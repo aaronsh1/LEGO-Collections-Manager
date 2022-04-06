@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegoCollectionManager", "LegoCollectionManager\LegoCollectionManager.csproj", "{EBA52504-0F5A-4A53-89C2-119E5D6E5677}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegoCollectionManagerAPI", "LegoCollectionManagerAPI\LegoCollectionManagerAPI.csproj", "{B999CB16-7321-4ADD-9A23-4BA8EBED86ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBA52504-0F5A-4A53-89C2-119E5D6E5677}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBA52504-0F5A-4A53-89C2-119E5D6E5677}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBA52504-0F5A-4A53-89C2-119E5D6E5677}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBA52504-0F5A-4A53-89C2-119E5D6E5677}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B999CB16-7321-4ADD-9A23-4BA8EBED86ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B999CB16-7321-4ADD-9A23-4BA8EBED86ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B999CB16-7321-4ADD-9A23-4BA8EBED86ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B999CB16-7321-4ADD-9A23-4BA8EBED86ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {08C84183-C338-4DA4-B6AD-1FAB9351DAFD}
+	EndGlobalSection
+EndGlobal

@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
@@ -8,13 +9,16 @@ namespace LegoCollectionManager.Models
 {
     public partial class LegoCollectionDBContext : DbContext
     {
+
+        private readonly IConfiguration _configuration;
         public LegoCollectionDBContext()
         {
         }
 
-        public LegoCollectionDBContext(DbContextOptions<LegoCollectionDBContext> options)
+        public LegoCollectionDBContext(DbContextOptions<LegoCollectionDBContext> options, IConfiguration configuration)
             : base(options)
         {
+            _configuration = configuration;
         }
 
         public virtual DbSet<Colour> Colours { get; set; }
@@ -32,12 +36,14 @@ namespace LegoCollectionManager.Models
         public virtual DbSet<UserSparePiece> UserSparePieces { get; set; }
         public virtual DbSet<UserSubsititutePool> UserSubsititutePools { get; set; }
 
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
+                string myDbConnection = _configuration.GetConnectionString("LegoDB");
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("server=clouddb.cph9smjdgcof.af-south-1.rds.amazonaws.com;uid=LegoCollection;pwd=leg0dBlog!n;database=LegoCollectionDB");
+                optionsBuilder.UseSqlServer(myDbConnection);
             }
         }
 

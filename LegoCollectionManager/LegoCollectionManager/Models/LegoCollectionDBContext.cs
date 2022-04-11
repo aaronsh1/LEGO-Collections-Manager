@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +35,19 @@ namespace LegoCollectionManager.Models
         public virtual DbSet<UserSet> UserSets { get; set; }
         public virtual DbSet<UserSparePiece> UserSparePieces { get; set; }
         public virtual DbSet<UserSubsititutePool> UserSubsititutePools { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                IConfiguration _configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .Build();
+                string myDbConnection = _configuration.GetConnectionString("DefaultConnection");
+                optionsBuilder.UseSqlServer(myDbConnection);
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

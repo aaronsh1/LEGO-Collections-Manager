@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit";
+    var SetId = ViewBag.SetId;
 }
 
 <h1>Edit</h1>
@@ -41,8 +42,10 @@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
+             <a asp-action="$"EditPieces/{SetId}"" class="btn btn-primary">Edit Pieces</a>
         </form>
     </div>
+   
 </div>
 
 <div>

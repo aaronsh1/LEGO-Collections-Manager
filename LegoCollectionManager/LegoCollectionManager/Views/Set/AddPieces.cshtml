@@ -6,7 +6,7 @@
     
 }
 
-<h1>Add Pieces For Set: @ViewBag.SetId</h1>
+<div style="display:inline-block"><p>Add Pieces For Set: </p><p>@ViewBag.SetId</p></div>
 
 <div>
     <div class="set-piece-list">
@@ -45,4 +45,5 @@
     </div>
     <hr/>
     @Html.Partial("AddPiece", new LegoCollectionManager.Models.SetPiece());
+    @Html.ActionLink($"Details/{SetId}", "Done");
 </div>

@@ -32,6 +32,30 @@ namespace LegoCollectionManager.Controllers
 
             return setPieces;
         }
+
+        public IEnumerable<SelectListItem> getAllPieces()
+        {
+            IEnumerable<SelectListItem> allPieces = from p in _context.Pieces
+                                                    select new SelectListItem
+                                                    {
+                                                        Text = p.PieceName,
+                                                        Value = p.PieceId.ToString()
+                                                    };
+
+            return allPieces;
+        }
+
+        public IEnumerable<SelectListItem> getColours()
+        {
+            IEnumerable<SelectListItem> colours = from c in _context.Colours
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = c.ColourName,
+                                                      Value = c.ColourId.ToString()
+                                                  };
+            return colours;
+        }
+
         // GET: SetController
         public ActionResult Index()
         {
@@ -97,7 +121,7 @@ namespace LegoCollectionManager.Controllers
             if (id == null)
                 return NotFound();
 
-            ViewBag.SetId = 100;
+            ViewBag.SetId = id;
             IEnumerable<SetPiece> pieces = (from sp in _context.SetPieces
                                             where sp.SetId == id
                                             select sp);
@@ -106,8 +130,15 @@ namespace LegoCollectionManager.Controllers
             return View(pieces);
         }
 
+        public ActionResult AddPiece()
+        {
+            ViewBag.Pieces = getAllPieces();
+            ViewBag.Colours = getColours();
+            return View();
+        }
+
         [HttpPost]
-        public ActionResult AddPieces(int setId, FormCollection form)
+        public ActionResult AddPiece(int setId, FormCollection form)
         {
             SetPiece SetPieceToAdd = new SetPiece();
             SetPieceToAdd.Piece = Int32.Parse(form["Piece"]);
@@ -155,6 +186,41 @@ namespace LegoCollectionManager.Controllers
             {
                 return View(nameof(Index));
             }
+        }
+
+        public ActionResult EditPieces(int? setId)
+        {
+            if (setId == null)
+                return NotFound();
+
+            ViewBag.SetId = setId;
+            IEnumerable<SetPiece> pieces = (from sp in _context.SetPieces
+                                            where sp.SetId == setId
+                                            select sp);
+
+
+            return View(pieces);
+        }
+
+        public ActionResult EditPiece(int? setPieceId)
+        {
+            ViewBag.Pieces = getAllPieces();
+            ViewBag.Colours = getColours();
+            SetPiece setPieceToEdit = _context.SetPieces.Find(setPieceId);
+            return View(setPieceToEdit);
+        }
+
+        [HttpPost]
+        public ActionResult EditPiece(SetPiece setPieceToEdit)
+        {
+            SetPiece originalSetPiece = (from s in _context.SetPieces
+                                    where s.SetId == setPieceToEdit.SetId
+                                    select s).ToList().FirstOrDefault();
+
+            _context.Entry(originalSetPiece).CurrentValues.SetValues(setPieceToEdit);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: SetController/Delete/5

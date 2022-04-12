@@ -23,17 +23,18 @@ namespace LegoCollectionManager.SetInformation
         public SetInformation GetSetInformation(string id) {
             dynamic DSI = GetDynamicSetInformation(id);
 
-            int count = DSI.hits.total.value;
+            int count = DSI?.hits?.total?.value ?? 0;
 
             if (count == 0) {
                 return null;
             }
 
             //TODO: Check if all these fields exist
-            dynamic info = DSI.hits.hits[0];
-            dynamic versionedInfo = info._source.product_versions[0]; //TODO: Use version from dash-id
-            dynamic buildingInstructions = versionedInfo.building_instructions;
-            dynamic themeInfo = info._source.themes[0];
+            dynamic info = DSI?.hits?.hits?[0];
+            dynamic versionedInfo = info?._source?.product_versions?[0]; //TODO: Use version from dash-id
+            dynamic buildingInstructions = versionedInfo?.building_instructions;
+            dynamic themeInfo = info?._source?.themes?[0];
+            dynamic additionalData = info?._source?.locale?["en-us"]?.additional_data;
 
             BuildingInstructions[] instructions = new BuildingInstructions[buildingInstructions.Count];
 
@@ -66,6 +67,20 @@ namespace LegoCollectionManager.SetInformation
                 };
             }
 
+            LegoSetImage[] additionalImages = new LegoSetImage[additionalData?.additional_images?.Count ?? 0];
+
+            for (int i = 0; i < additionalImages.Length; i++) {
+                dynamic img = additionalData.additional_images[i];
+                img = img.grown_up_image ?? img.kid_image;
+                img = img.image;
+                
+                additionalImages[i] = new LegoSetImage() {
+                    FileName = img.filename,
+                    Uid = img.uid,
+                    Url = img.url,
+                };
+            }
+
             return new SetInformation()
             {
                 Id = info._id,
@@ -74,6 +89,7 @@ namespace LegoCollectionManager.SetInformation
                 Instructions = instructions,
                 PrimaryImage = primaryImage,
                 Images = images,
+                AdditionalImages = additionalImages,
             };
         }
 
@@ -160,7 +176,8 @@ namespace LegoCollectionManager.SetInformation
         public BuildingInstructions[] Instructions { get; init; }
         public LegoSetImage PrimaryImage { get; init; }
         public LegoSetImage[] Images { get; init; }
-        //TODO: Parse additional _source.locale and _source.assets fields (such as description and additional_images)
+        public LegoSetImage[] AdditionalImages { get; init; }
+        //TODO: Parse additional _source.locale and _source.assets fields (such as description)
     }
 
     public class BuildingInstructions { 

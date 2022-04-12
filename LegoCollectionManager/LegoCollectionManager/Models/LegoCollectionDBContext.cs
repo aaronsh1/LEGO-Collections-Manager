@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Configuration;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
@@ -10,15 +12,13 @@ namespace LegoCollectionManager.Models
     public partial class LegoCollectionDBContext : DbContext
     {
 
-        private readonly IConfiguration _configuration;
         public LegoCollectionDBContext()
         {
         }
 
-        public LegoCollectionDBContext(DbContextOptions<LegoCollectionDBContext> options, IConfiguration configuration)
+        public LegoCollectionDBContext(DbContextOptions<LegoCollectionDBContext> options)
             : base(options)
         {
-            _configuration = configuration;
         }
 
         public virtual DbSet<Colour> Colours { get; set; }
@@ -36,13 +36,15 @@ namespace LegoCollectionManager.Models
         public virtual DbSet<UserSparePiece> UserSparePieces { get; set; }
         public virtual DbSet<UserSubsititutePool> UserSubsititutePools { get; set; }
 
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                string myDbConnection = _configuration.GetConnectionString("LegoDB");
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                IConfiguration _configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .Build();
+                string myDbConnection = _configuration.GetConnectionString("DefaultConnection");
                 optionsBuilder.UseSqlServer(myDbConnection);
             }
         }

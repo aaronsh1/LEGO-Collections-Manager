@@ -13,7 +13,16 @@ namespace LegoCollectionManager.Controllers
         // GET: UserController
         public ActionResult Index()
         {
-            return View(_context.Sets);
+            return View(_context.Users);
+        }
+
+        // GET: UserController/Login
+        public RedirectToActionResult Login(string username)
+        {
+            User userToReturn = (from u in _context.Users
+                                 where u.Username == username
+                                 select u).ToList().FirstOrDefault();
+            return RedirectToAction("Details", new { id = userToReturn.UserId });
         }
 
         // GET: UserController/Details/5
@@ -87,62 +96,27 @@ namespace LegoCollectionManager.Controllers
             }
         }
 
-        public ActionResult EditPieces(int? setId)
-        {
-            if (setId == null)
-                return NotFound();
-
-            ViewBag.SetId = setId;
-            IEnumerable<SetPiece> pieces = (from sp in _context.SetPieces
-                                            where sp.SetId == setId
-                                            select sp);
-
-
-            return View(pieces);
-        }
-
-        public ActionResult EditPiece(int? setPieceId)
-        {
-            ViewBag.Pieces = getAllPieces();
-            ViewBag.Colours = getColours();
-            SetPiece setPieceToEdit = _context.SetPieces.Find(setPieceId);
-            return View(setPieceToEdit);
-        }
-
-        [HttpPost]
-        public ActionResult EditPiece(SetPiece setPieceToEdit)
-        {
-            SetPiece originalSetPiece = (from s in _context.SetPieces
-                                         where s.SetId == setPieceToEdit.SetId
-                                         select s).ToList().FirstOrDefault();
-
-            _context.Entry(originalSetPiece).CurrentValues.SetValues(setPieceToEdit);
-            _context.SaveChanges();
-
-            return RedirectToAction(nameof(Index));
-        }
-
-        // GET: SetController/Delete/5
+        // GET: UserController/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
                 return NotFound();
 
-            Set SetToDelete = (from s in _context.Sets
-                               where s.SetId == id
-                               select s).ToList().FirstOrDefault();
+            User userToDelete = (from u in _context.Users
+                                 where u.UserId == id
+                                 select u).ToList().FirstOrDefault();
             return View();
         }
 
-        // POST: SetController/Delete/5
+        // POST: UserController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(Set setToDelete)
+        public ActionResult Delete(User userToDelete)
         {
-            if (setToDelete == null)
+            if (userToDelete == null)
                 return NotFound();
 
-            _context.Remove(setToDelete);
+            _context.Remove(userToDelete);
             _context.SaveChanges();
             try
             {

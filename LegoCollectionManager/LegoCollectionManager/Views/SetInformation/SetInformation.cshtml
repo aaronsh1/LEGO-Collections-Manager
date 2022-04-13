@@ -7,31 +7,41 @@
 <style>
     img {
         max-width: 400px;
+        margin: 15px;
     }
 </style>
 
 <div>
-    <h1>@Model.Name</h1>
-    <p>@Model.Id</p>
-    <p>Pieces: @Model.PieceCount</p>
+    @if (Model == null)
+    {
+        <h1>Set not found</h1>
+    } else {
 
-    <h2>Instructions</h2>
-    @for (int i = 0; i < Model.Instructions.Length; i++)
-    {        
-        <a href="@Model.Instructions[i].FileUrl" target="_blank">
-            <img src="@Model.Instructions[i].ImageUrl"/>
-        </a>
-    }
+        <h1>@Model.Name</h1>
+        <p>@Model.Id</p>
+        <p>Pieces: @Model.PieceCount</p>
 
-    <h2>Images</h2>
-    @for (int i = 0; i < Model.Images.Length; i++)
-    {   
-        <img src="@Model.Images[i].Url"/>
-    }
+        <h2>Instructions</h2>
+        //TODO: Display Instruction numbers
+        @for (int i = 0; i < Model.Instructions.Length; i++)
+        {        
+            <a href="@Model.Instructions[i].FileUrl" target="_blank">
+                <img src="@Model.Instructions[i].ImageUrl"/>
+            </a>
+        }
 
-    <h2>Additional Images</h2>
-    @for (int i = 0; i < Model.AdditionalImages.Length; i++)
-    {   
-        <img src="@Model.AdditionalImages[i].Url"/>
+        <h2>Images</h2>
+        //TODO: Images carousel
+        @for (int i = 0; i < Model.Images.Length; i++)
+        {   
+            <img src="@Model.Images[i].Url"/>
+        }
+
+        <h2>Additional Images</h2>
+        //TODO: Images carousel
+        @for (int i = 0; i < Model.AdditionalImages.Length; i++)
+        {   
+            <img src="@Model.AdditionalImages[i].Url"/>
+        }
     }
 </div>

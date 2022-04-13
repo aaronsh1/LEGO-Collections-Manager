@@ -36,34 +36,34 @@ namespace LegoCollectionManager.SetInformation
             dynamic themeInfo = info?._source?.themes?[0];
             dynamic additionalData = info?._source?.locale?["en-us"]?.additional_data;
 
-            BuildingInstructions[] instructions = new BuildingInstructions[buildingInstructions.Count];
+            BuildingInstructions[] instructions = new BuildingInstructions[buildingInstructions?.Count ?? 0];
 
             for (int i = 0; i < instructions.Length; i++) {
                 instructions[i] = new BuildingInstructions() {
-                    Id = buildingInstructions[i].id,
-                    SequenceNumber = buildingInstructions[i].sequence.element,
-                    SequenceTotal = buildingInstructions[i].sequence.total,
-                    FileUrl = buildingInstructions[i].file.url,
-                    ImageUrl = buildingInstructions[i].image.url,                    
+                    Id = buildingInstructions[i]?.id,
+                    SequenceNumber = buildingInstructions[i]?.sequence?.element,
+                    SequenceTotal = buildingInstructions[i]?.sequence?.total,
+                    FileUrl = buildingInstructions[i]?.file?.url,
+                    ImageUrl = buildingInstructions[i]?.image?.url,                    
                 };
             }
 
             LegoSetImage primaryImage = new LegoSetImage()
             {
-                Uid = themeInfo.primary_image.uid,
-                FileName = themeInfo.primary_image.filename,
-                ImageType = themeInfo.primary_image.imageType,
-                Url = themeInfo.primary_image.url,
+                Uid = themeInfo?.primary_image?.uid,
+                FileName = themeInfo?.primary_image?.filename,
+                ImageType = themeInfo?.primary_image?.imageType,
+                Url = themeInfo?.primary_image?.url,
             };
 
             LegoSetImage[] images = new LegoSetImage[themeInfo.images.Count];
 
             for (int i = 0; i < images.Length; i++) {
                 images[i] = new LegoSetImage() { 
-                    Uid = themeInfo.images[i].uid,
-                    FileName = themeInfo.images[i].filename,
-                    ImageType = themeInfo.images[i].imageType,
-                    Url = themeInfo.images[i].url,
+                    Uid = themeInfo?.images[i]?.uid,
+                    FileName = themeInfo?.images[i]?.filename,
+                    ImageType = themeInfo?.images[i]?.imageType,
+                    Url = themeInfo?.images[i]?.url,
                 };
             }
 
@@ -71,13 +71,13 @@ namespace LegoCollectionManager.SetInformation
 
             for (int i = 0; i < additionalImages.Length; i++) {
                 dynamic img = additionalData.additional_images[i];
-                img = img.grown_up_image ?? img.kid_image;
-                img = img.image;
+                img = img?.grown_up_image ?? img?.kid_image;
+                img = img?.image;
                 
                 additionalImages[i] = new LegoSetImage() {
-                    FileName = img.filename,
-                    Uid = img.uid,
-                    Url = img.url,
+                    FileName = img?.filename,
+                    Uid = img?.uid,
+                    Url = img?.url,
                 };
             }
 
@@ -85,7 +85,7 @@ namespace LegoCollectionManager.SetInformation
             {
                 Id = info._id,
                 Name = info._source.locale["en-us"].display_title,
-                PieceCount = versionedInfo.piece_count,
+                PieceCount = versionedInfo?.piece_count,
                 Instructions = instructions,
                 PrimaryImage = primaryImage,
                 Images = images,

@@ -1,14 +1,14 @@
 CREATE TABLE [Piece] (
   [PieceId] int PRIMARY KEY IDENTITY(1, 1),
-  [PieceName] VARCHAR,
+  [PieceName] VARCHAR(50),
   [PieceCategory] int,
-  [PieceImage] VARCHAR
+  [PieceImage] VARCHAR(200)
 )
 GO
 
 CREATE TABLE [SubstitutePool] (
   [SubstitutePool] int PRIMARY KEY IDENTITY(1, 1),
-  [Name] VARCHAR
+  [Name] VARCHAR(50)
 )
 GO
 
@@ -36,29 +36,29 @@ GO
 
 CREATE TABLE [PieceCategory] (
   [PieceCategoryId] int PRIMARY KEY IDENTITY(1, 1),
-  [PieceCategoryName] VARCHAR
+  [PieceCategoryName] VARCHAR(50)
 )
 GO
 
 CREATE TABLE [Set] (
   [SetId] int PRIMARY KEY IDENTITY(1, 1),
-  [SetName] VARCHAR,
+  [SetName] VARCHAR(50),
   [PiecesAmount] int,
   [SetCategory] int,
-  [ShopLink] VARCHAR,
-  [Image] VARCHAR
+  [ShopLink] VARCHAR(50),
+  [Image] VARCHAR(200)
 )
 GO
 
 CREATE TABLE [SetCategory] (
   [SetCategoryId] int PRIMARY KEY IDENTITY(1, 1),
-  [SetCategoryName] VARCHAR
+  [SetCategoryName] VARCHAR(50)
 )
 GO
 
 CREATE TABLE [User] (
   [UserId] int PRIMARY KEY IDENTITY(1, 1),
-  [Username] VARCHAR
+  [Username] VARCHAR(50)
 )
 GO
 
@@ -79,7 +79,7 @@ GO
 
 CREATE TABLE [Colour] (
   [ColourId] int PRIMARY KEY IDENTITY(1, 1),
-  [ColourName] VARCHAR
+  [ColourName] VARCHAR(50)
 )
 GO
 

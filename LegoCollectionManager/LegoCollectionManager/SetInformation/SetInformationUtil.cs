@@ -19,7 +19,6 @@ namespace LegoCollectionManager.SetInformation
             this.LegoApiKey = apiKey;
         }
 
-        //TODO: Support versioning with dash-ids: i.e. 60321-1
         public SetInformation GetSetInformation(string id) {
             dynamic DSI = GetDynamicSetInformation(id);
 
@@ -29,12 +28,12 @@ namespace LegoCollectionManager.SetInformation
                 return null;
             }
 
-            //TODO: Check if all these fields exist
             dynamic info = DSI?.hits?.hits?[0];
-            dynamic versionedInfo = info?._source?.product_versions?[0]; //TODO: Use version from dash-id
+            dynamic versionedInfo = info?._source?.product_versions?.Last; 
             dynamic buildingInstructions = versionedInfo?.building_instructions;
             dynamic themeInfo = info?._source?.themes?[0];
-            dynamic additionalData = info?._source?.locale?["en-us"]?.additional_data;
+            dynamic locale = info?._source?.locale?["en-us"];
+            dynamic additionalData = locale?.additional_data;
 
             BuildingInstructions[] instructions = new BuildingInstructions[buildingInstructions?.Count ?? 0];
 
@@ -54,6 +53,13 @@ namespace LegoCollectionManager.SetInformation
                 FileName = themeInfo?.primary_image?.filename,
                 ImageType = themeInfo?.primary_image?.imageType,
                 Url = themeInfo?.primary_image?.url,
+            };
+
+            LegoSetImage boxImage = new LegoSetImage() {
+                Uid = additionalData?.box_image?.uid,
+                FileName = additionalData?.box_image?.filename,
+                ImageType = additionalData?.box_image?.imageType,
+                Url = additionalData?.box_image?.url,
             };
 
             LegoSetImage[] images = new LegoSetImage[themeInfo.images.Count];
@@ -85,9 +91,14 @@ namespace LegoCollectionManager.SetInformation
             {
                 Id = info._id,
                 Name = info._source.locale["en-us"].display_title,
+                Description = locale?.description,
+                BulletPoints = ((string)locale?.bullet_points)?.Split("\r\n"),
+                Headline = locale?.headline,
+                OneLiner = locale?.one_liner,                
                 PieceCount = versionedInfo?.piece_count,
                 Instructions = instructions,
                 PrimaryImage = primaryImage,
+                BoxImage = boxImage,                
                 Images = images,
                 AdditionalImages = additionalImages,
             };
@@ -154,7 +165,6 @@ namespace LegoCollectionManager.SetInformation
                 StreamReader reader = new StreamReader(stream);
 
                 string jsonResponse = reader.ReadToEnd();
-                File.WriteAllText("test.json", jsonResponse);
 
                 dynamic resObject = JObject.Parse(jsonResponse);
                 
@@ -172,12 +182,16 @@ namespace LegoCollectionManager.SetInformation
     public class SetInformation { 
         public string Id { get; init; }
         public string Name { get; init; }
+        public string Description { get; init; }
+        public string Headline { get; init; }
+        public string OneLiner { get; init; }
+        public string[] BulletPoints { get; init; }
         public int PieceCount { get; init; }
         public BuildingInstructions[] Instructions { get; init; }
         public LegoSetImage PrimaryImage { get; init; }
+        public LegoSetImage BoxImage { get; init; }
         public LegoSetImage[] Images { get; init; }
         public LegoSetImage[] AdditionalImages { get; init; }
-        //TODO: Parse additional _source.locale and _source.assets fields (such as description)
     }
 
     public class BuildingInstructions { 

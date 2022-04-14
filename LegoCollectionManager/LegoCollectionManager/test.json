@@ -1,1 +1,962 @@
-{"took":9,"timed_out":false,"_shards":{"total":6,"successful":6,"skipped":0,"failed":0},"hits":{"total":{"value":1,"relation":"eq"},"max_score":6.8068295,"hits":[{"_index":"lego_historic_product_637816530688992120","_type":"_doc","_id":"75159","_score":6.8068295,"_source":{"market":{"us":{"skus":[{"item_id":6136731}]}},"product_versions":[{"characteristics":{"isBatteryOperated":false,"hasSmallBall":true,"hasPullbackFunctionality":false},"piece_count":4016,"item_id":6136729,"building_instructions":[{"sequence":{"total":1,"element":1},"image":{"size":153422,"modifiedDate":"2019-09-24T13:41:10","url":"https://www.lego.com/cdn/product-assets/product.bi.core.img/6178324.png"},"file":{"size":164225724,"modifiedDate":"2019-09-24T12:07:24.9197726","url":"https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6178324.pdf"},"description":"BI 85130, 296+4/100+400G, 75159 V29","id":"6178324","type":"product.bi.core"},{"sequence":{"total":1,"element":1},"image":{"size":135232,"modifiedDate":"2019-11-20T11:51:16","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - DE.png"},"metaData":{"locales":["de-de","de-at","de-ch","de-lu"]},"file":{"size":22700791,"modifiedDate":"2019-11-20T11:51:15.5811885","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - DE.pdf"},"description":"75159_X_Digital Booklet - DE","type":"product.bi.additional.info"},{"sequence":{"total":1,"element":1},"image":{"size":135232,"modifiedDate":"2019-11-20T11:51:16","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - ES.png"},"metaData":{"locales":["es-es","es-ar","es-mx"]},"file":{"size":22731685,"modifiedDate":"2019-11-20T11:51:17.5614466","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - ES.pdf"},"description":"75159_X_Digital Booklet - ES","type":"product.bi.additional.info"},{"sequence":{"total":1,"element":1},"image":{"size":135232,"modifiedDate":"2019-11-20T11:51:16","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - FR.png"},"metaData":{"locales":["fr-ch","fr-lu","fr-fr","fr-be","fr-ca"]},"file":{"size":21935185,"modifiedDate":"2019-11-20T11:51:19.3043444","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - FR.pdf"},"description":"75159_X_Digital Booklet - FR","type":"product.bi.additional.info"},{"sequence":{"total":1,"element":1},"image":{"size":135232,"modifiedDate":"2019-11-20T11:51:16","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - HU.png"},"metaData":{"locales":["hu-hu"]},"file":{"size":21967717,"modifiedDate":"2019-11-20T11:51:20.9167945","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - HU.pdf"},"description":"75159_X_Digital Booklet - HU","type":"product.bi.additional.info"},{"sequence":{"total":1,"element":1},"image":{"size":135232,"modifiedDate":"2019-11-20T11:51:16","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - PT.png"},"metaData":{"locales":["pt-pt","pt-br"]},"file":{"size":22800663,"modifiedDate":"2019-11-20T11:51:22.8948884","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - PT.pdf"},"description":"75159_X_Digital Booklet - PT","type":"product.bi.additional.info"},{"sequence":{"total":1,"element":1},"image":{"size":135232,"modifiedDate":"2019-11-20T11:51:16","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - ZH.png"},"metaData":{"locales":["zh-cn"]},"file":{"size":23016251,"modifiedDate":"2019-11-20T11:51:24.6123129","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - ZH.pdf"},"description":"75159_X_Digital Booklet - ZH","type":"product.bi.additional.info"}],"availability":{"marketingExitDate":"2020-12-31T00:00:00","launchDate":"2016-10-01T00:00:00"},"measurements":{"itemId":6136729,"length":585.0,"width":490.0,"sizeUnit":"MM","height":190.0}},{"characteristics":{"isBatteryOperated":false,"hasSmallBall":true,"hasPullbackFunctionality":false},"piece_count":4016,"item_id":6136731,"building_instructions":[{"sequence":{"total":1,"element":1},"image":{"size":153324,"modifiedDate":"2019-09-24T13:51:08","url":"https://www.lego.com/cdn/product-assets/product.bi.core.img/6182624.png"},"file":{"size":190371973,"modifiedDate":"2019-09-24T12:25:10.3598067","url":"https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6182624.pdf"},"description":"BI 85130, 320+4/100+400G, 75159 V39","id":"6182624","type":"product.bi.core"},{"sequence":{"total":1,"element":1},"image":{"size":135232,"modifiedDate":"2019-11-20T11:51:16","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - DE.png"},"metaData":{"locales":["de-de","de-at","de-ch","de-lu"]},"file":{"size":22700791,"modifiedDate":"2019-11-20T11:51:15.5811885","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - DE.pdf"},"description":"75159_X_Digital Booklet - DE","type":"product.bi.additional.info"},{"sequence":{"total":1,"element":1},"image":{"size":135232,"modifiedDate":"2019-11-20T11:51:16","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - ES.png"},"metaData":{"locales":["es-es","es-ar","es-mx"]},"file":{"size":22731685,"modifiedDate":"2019-11-20T11:51:17.5614466","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - ES.pdf"},"description":"75159_X_Digital Booklet - ES","type":"product.bi.additional.info"},{"sequence":{"total":1,"element":1},"image":{"size":135232,"modifiedDate":"2019-11-20T11:51:16","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - FR.png"},"metaData":{"locales":["fr-ch","fr-lu","fr-fr","fr-be","fr-ca"]},"file":{"size":21935185,"modifiedDate":"2019-11-20T11:51:19.3043444","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - FR.pdf"},"description":"75159_X_Digital Booklet - FR","type":"product.bi.additional.info"},{"sequence":{"total":1,"element":1},"image":{"size":135232,"modifiedDate":"2019-11-20T11:51:16","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - HU.png"},"metaData":{"locales":["hu-hu"]},"file":{"size":21967717,"modifiedDate":"2019-11-20T11:51:20.9167945","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - HU.pdf"},"description":"75159_X_Digital Booklet - HU","type":"product.bi.additional.info"},{"sequence":{"total":1,"element":1},"image":{"size":135232,"modifiedDate":"2019-11-20T11:51:16","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - PT.png"},"metaData":{"locales":["pt-pt","pt-br"]},"file":{"size":22800663,"modifiedDate":"2019-11-20T11:51:22.8948884","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - PT.pdf"},"description":"75159_X_Digital Booklet - PT","type":"product.bi.additional.info"},{"sequence":{"total":1,"element":1},"image":{"size":135232,"modifiedDate":"2019-11-20T11:51:16","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - ZH.png"},"metaData":{"locales":["zh-cn"]},"file":{"size":23016251,"modifiedDate":"2019-11-20T11:51:24.6123129","url":"https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - ZH.pdf"},"description":"75159_X_Digital Booklet - ZH","type":"product.bi.additional.info"}],"availability":{"marketingExitDate":"2020-12-31T00:00:00","launchDate":"2016-10-01T00:00:00"},"measurements":{"itemId":6136731,"length":585.0,"width":490.0,"sizeUnit":"MM","height":190.0}}],"themes":[{"primary_image":{"uid":"blt957b0a43fd536dc2","filename":"sw_standard_original_srgb_2hy17.png","altText":"Star Wars™","size":66483,"modifiedDate":"2020-09-15T07:58:02.567Z","title":"sw_standard_original_srgb_2hy17.png","contentType":"image/png","imageType":"primary_image","url":"https://www.lego.com/cdn/cs/catalog/assets/blt957b0a43fd536dc2/1/sw_standard_original_srgb_2hy17.png"},"images":[{"uid":"blt95b35c9e185d464b","filename":"1125x240_SWAS.jpg","altText":"LEGO® Star Wars™","size":135289,"modifiedDate":"2019-10-23T12:46:28.087Z","description":"/r/www/r/catalogs/-/media/catalogs/tags/star wars/2018/1125x240_swas.jpg","title":"1125x240_SWAS.jpg","contentType":"image/jpeg","imageType":"banner","url":"https://www.lego.com/cdn/cs/catalog/assets/blt95b35c9e185d464b/1/1125x240_SWAS.jpg"},{"uid":"bltff1957f11f379f6d","filename":"Background_SW_primary.jpg","altText":"","size":83121,"modifiedDate":"2021-01-18T08:16:36.329Z","title":"Background_SW_primary.jpg","contentType":"image/jpeg","imageType":"background","url":"https://www.lego.com/cdn/cs/catalog/assets/bltff1957f11f379f6d/1/Background_SW_primary.jpg"},{"uid":"blt72a7d1b5559a5dd5","filename":"StarWars_dbixthemecard_nov2021.png","altText":"","size":1300095,"modifiedDate":"2021-11-17T13:33:23.155Z","title":"StarWars_dbixthemecard_nov2021.png","contentType":"image/png","imageType":"card_image","url":"https://www.lego.com/cdn/cs/catalog/assets/blt72a7d1b5559a5dd5/1/StarWars_dbixthemecard_nov2021.png"},{"uid":"blt4d235bd8ad89a154","filename":"SW_D2C_Short_sRGB_2018.png","altText":"","size":86764,"modifiedDate":"2019-10-23T12:46:26.512Z","description":"/r/www/r/catalogs/-/media/catalogs/themes/2019 franchise logos/sw_d2c_short_srgb_2018.png","title":"SW_D2C_Short_sRGB_2018.png","contentType":"image/png","imageType":"logo_portrait","url":"https://www.lego.com/cdn/cs/catalog/assets/blt4d235bd8ad89a154/1/SW_D2C_Short_sRGB_2018.png"},{"uid":"blt957b0a43fd536dc2","filename":"sw_standard_original_srgb_2hy17.png","altText":"Star Wars™","size":66483,"modifiedDate":"2020-09-15T07:58:02.567Z","title":"sw_standard_original_srgb_2hy17.png","contentType":"image/png","imageType":"primary_image","url":"https://www.lego.com/cdn/cs/catalog/assets/blt957b0a43fd536dc2/1/sw_standard_original_srgb_2hy17.png"}],"isSubtheme":false,"display_title":"","theme_id":{"group_id":140,"theme_id":20056,"portal_id":10000},"id":"ae537d16-848c-47d1-9c28-5a57aea1d87b","title":"Star Wars","locale":{"fi-fi":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"uk-ua":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"nb-no":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"en-ca":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"en-us":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"lv-lv":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"lt-lt":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"en-za":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"ar-ae":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"sl-si":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"zh-cn":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"nl-be":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"de-at":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"el-gr":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"en-my":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"nl-nl":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"fr-ch":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"en-au":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"cs-cz":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"fo-fo":{"characters":[],"features":[],"display_title":"Lf2Ef2Gf2Of2® Sf","tags":[]},"de-ch":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"ja-jp":{"characters":[],"features":[],"display_title":"レゴ®スター・ウォーズ","tags":[]},"hu-hu":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"de-de":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"zh-tw":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"zh-hk":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"pt-br":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"ko-kr":{"characters":[],"features":[],"display_title":"레고® 스타워즈™:","tags":[]},"sk-sk":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"es-es":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"es-mx":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"fr-ca":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"it-it":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"ru-ru":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"en-nz":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"pl-pl":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"pt-pt":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"es-ar":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"ro-ro":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"fr-be":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"sv-se":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"en-sg":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"da-dk":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"tr-tr":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"et-ee":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"fr-fr":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]},"en-gb":{"characters":[],"features":[],"display_title":"LEGO® Star Wars™","tags":[]}}}],"assets":[{"itemId":"50075159","modifiedDate":"2020-08-20T15:29:45.1336748","assetFiles":[{"extension":".jpg","fileName":"75159_Prod.jpg","size":283700,"metaTags":{"image":{"width":400,"height":768}},"modifiedDate":"0001-01-01T00:00:00","type":"product.img.pri","url":"https://www.lego.com/cdn/product-assets/product.img.pri/75159_Prod.jpg"}],"type":"product.img.pri","baseName":"75159_Prod"}],"availability":{"marketingExitDate":"2020-12-31T00:00:00","launchDate":"2016-10-01T00:00:00"},"locale":{"en-us":{"additional_data":{"additional_images":[{"kid_image":{"image":{"uid":"bltd8a37fe66125ebd1","filename":"LEGO_75159_WEB_SEC01_1488.jpg","content_type":"image/jpeg","alt_text":"","description":"/r/www/r/catalogs/-/media/catalogs/products/star wars/2016/75159/lego_75159_web_sec01_1488.jpg","file_size":"303303","url":"https://www.lego.com/cdn/cs/catalog/assets/bltd8a37fe66125ebd1/1/LEGO_75159_WEB_SEC01_1488.jpg"}}},{"kid_image":{"image":{"uid":"bltee11c12173978134","filename":"LEGO_75159_WEB_SEC02_1488.jpg","content_type":"image/jpeg","alt_text":"","description":"/r/www/r/catalogs/-/media/catalogs/products/star wars/2016/75159/lego_75159_web_sec02_1488.jpg","file_size":"299263","url":"https://www.lego.com/cdn/cs/catalog/assets/bltee11c12173978134/1/LEGO_75159_WEB_SEC02_1488.jpg"}}},{"kid_image":{"image":{"uid":"blt7e94157e05dc2543","filename":"LEGO_75159_WEB_SEC03_1488.jpg","content_type":"image/jpeg","alt_text":"","description":"/r/www/r/catalogs/-/media/catalogs/products/star wars/2016/75159/lego_75159_web_sec03_1488.jpg","file_size":"248858","url":"https://www.lego.com/cdn/cs/catalog/assets/blt7e94157e05dc2543/1/LEGO_75159_WEB_SEC03_1488.jpg"}}},{"kid_image":{"image":{"uid":"blt66acaa4beec153ce","filename":"LEGO_75159_WEB_SEC04_1488.jpg","content_type":"image/jpeg","alt_text":"","description":"/r/www/r/catalogs/-/media/catalogs/products/star wars/2016/75159/lego_75159_web_sec04_1488.jpg","file_size":"250860","url":"https://www.lego.com/cdn/cs/catalog/assets/blt66acaa4beec153ce/1/LEGO_75159_WEB_SEC04_1488.jpg"}}},{"kid_image":{"image":{"uid":"bltc8afbd5bf6f6ad36","filename":"LEGO_75159_WEB_SEC05_1488.jpg","content_type":"image/jpeg","alt_text":"","description":"/r/www/r/catalogs/-/media/catalogs/products/star wars/2016/75159/lego_75159_web_sec05_1488.jpg","file_size":"333534","url":"https://www.lego.com/cdn/cs/catalog/assets/bltc8afbd5bf6f6ad36/1/LEGO_75159_WEB_SEC05_1488.jpg"}}},{"grown_up_image":{"image":{"uid":"bltb28f6c440592f1bb","filename":"LEGO_75159_Box1_v39.jpg","content_type":"image/jpeg","alt_text":"","description":"/r/www/r/catalogs/-/media/catalogs/products/grownup/75120/lego_75159_box1_v39.jpg","file_size":"844737","url":"https://www.lego.com/cdn/cs/catalog/assets/bltb28f6c440592f1bb/1/LEGO_75159_Box1_v39.jpg"}}},{"grown_up_image":{"image":{"uid":"bltec6760a4e8a7059d","filename":"LEGO_75159_Box5_v39.jpg","content_type":"image/jpeg","alt_text":"","description":"/r/www/r/catalogs/-/media/catalogs/products/grownup/75120/lego_75159_box5_v39.jpg","file_size":"886652","url":"https://www.lego.com/cdn/cs/catalog/assets/bltec6760a4e8a7059d/1/LEGO_75159_Box5_v39.jpg"}}}],"box_image":{"uid":"blt4a59543b7fd5ae44","filename":"LEGO_75159_Box1_v39_1488.png","content_type":"image/png","description":"/r/www/r/catalogs/-/media/catalogs/products/star wars/2016/75159/lego_75159_box1_v39_1488.png","file_size":"296085","url":"https://www.lego.com/cdn/cs/catalog/assets/blt4a59543b7fd5ae44/1/LEGO_75159_Box1_v39_1488.png"},"uid":"bltc36acf3b33ff53eb","hide_dbix_availability":false,"sitecore_id":"1662d32c-c558-456f-840c-13200d5c6e24","primary_image_grownups":{"uid":"bltaf50f0d6c7d66e2b","filename":"LEGO_75159_Prod.jpg","content_type":"image/jpeg","description":"/r/www/r/catalogs/-/media/catalogs/products/grownup/75120/lego_75159_prod.jpg","file_size":"619034","url":"https://www.lego.com/cdn/cs/catalog/assets/bltaf50f0d6c7d66e2b/1/LEGO_75159_Prod.jpg"},"seo_content":{"og_title":null,"description":null,"og_image":null}},"bullet_points":"• Includes 23 minifigures: Grand Moff Tarkin, Darth Vader, Emperor Palpatine, Imperial Navy Officer, Imperial Officer, 2 Stormtroopers, 2 Death Star Troopers, 2 Emperor's Royal Guards, 2 Death Star Gunners, Death Star Droid, Obi-Wan Kenobi, Chewbacca, Princess Leia, C-3PO, Han Solo, Han Solo (disguise), Luke Skywalker (Tatooine), Luke Skywalker (disguise) and Luke Skywalker (final duel), plus R2-D2, an Imperial Astromech and a Dianoga trash compactor monster.\r\n• Features a superlaser control room, Imperial conference chamber, hangar bay with moving launch rack and detachable TIE Advanced with space for Lord Vader inside, Emperor Palpatine’s throne room, Droid maintenance room, detention block, trash compactor, tractor beam, cargo area, turbo laser with spring-loaded shooters and seats for the 2 Death Star gunners, and 2 movable turbo laser towers.\r\n• Weapons include 3 Lightsabers, 4 blasters, 3 blaster pistols, 4 blaster rifles, 2 force pikes, 2 Force Lightning elements and a bowcaster.\r\n• Load up and fire the turbo laser’s spring-loaded shooters to keep the rebels at bay.\r\n• Maneuver Lord Vader’s TIE Advanced into position and prepare for launch.\r\n• Battle the Royal Guard in the throne room and then take on Palpatine himself!\r\n• Help Leia escape from the detention block and swing to safety with Luke across the chasm!\r\n• Will Obi-Wan shut down the tractor beam and help the rebels defeat the Empire?\r\n• Can you spot the Dianoga trash compactor monster?\r\n• Recreate other unforgettable scenes from the classic Star Wars films.\r\n• The perfect addition to any LEGO® Star Wars collection.\r\n• This set offers an age-appropriate building experience for ages 14 and over.\r\n• Measures over 16” (41cm) high, and 16” (42cm) wide.","comm_bullet_points":"• Build the giant, super-detailed ultimate battle station of the evil Empire\r\n• Includes key locations and features from Star Wars: Episode IV A New Hope and Star Wars: Episode VI Return of the Jedi\r\n• Includes 23 minifigures: Grand Moff Tarkin, Darth Vader, Emperor Palpatine, Imperial Navy Officer, Imperial Officer, 2 Stormtroopers, 2 Death Star Troopers, 2 Emperor's Royal Guards, 2 Death Star Gunners, Death Star Droid, Obi-Wan Kenobi, Chewbacca, Princess Leia, C-3PO, Han Solo (disguised), LukeSkywalker (Tatooine), Luke Skywalker (disguised) and Luke Skywalker (Final Duel), plus R2-D2, an Imperial Astromech and a buildable Dianoga trash compactor monster\r\n• LEGO Star Wars building toys are compatible with all LEGO construction sets for creative building\r\n• Measures over 16” high and 16” wide\r\n• 4,016 pieces – For boys and girls 14 years and older","display_title":"Death Star™","one_liner":"Rule the galaxy from the Imperial Death Star with superlaser, conference chamber, hangar with TIE Advanced, throne room, detention block, 23 minifigures and 2 Droids.","description":"Take command of the ultimate Imperial weapon—the Death Star! This amazing Star Wars model has so many great rooms, chambers, hangars and more, you won’t know where to start. Operate the giant superlaser from the control room, plan missions in the conference chamber, and launch Lord Vader's TIE Advanced from the hangar bay. Fix Droids in the maintenance room, keep prisoners secure in the detention block and overpower rebel starships with the spring-loaded shooter turbo laser, turbo laser towers and powerful tractor beam. You can even visit Emperor Palpatine in his throne room, keep things moving in the cargo area, and take out the trash in the trash compactor. And of course no Death Star story would be complete without Obi-Wan Kenobi, Luke Skywalker and Han Solo doing their best to destroy the Empire's fearsome Death Star! Will they foil the plans of Vader and the other Imperial characters? The fate of the Death Star is in your hands…","title":"Death Star™","headline":"Win the battle for the Empire with the awesome Death Star!","tags":["fictional past","vehicle","tool","staff","weapon","flick missile","laser","cannon","ball","garage","princess","warrior","robot","battle","fiction","space","star","airplane"]}},"product_number":"75159"}}]}}
+{
+  "took": 3,
+  "timed_out": false,
+  "_shards": {
+    "total": 6,
+    "successful": 6,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 1,
+      "relation": "eq"
+    },
+    "max_score": 6.8077135,
+    "hits": [
+      {
+        "_index": "lego_historic_product_637816530688992120",
+        "_type": "_doc",
+        "_id": "75159",
+        "_score": 6.8077135,
+        "_source": {
+          "market": {
+            "us": {
+              "skus": [
+                {
+                  "item_id": 6136731
+                }
+              ]
+            }
+          },
+          "product_versions": [
+            {
+              "characteristics": {
+                "isBatteryOperated": false,
+                "hasSmallBall": true,
+                "hasPullbackFunctionality": false
+              },
+              "piece_count": 4016,
+              "item_id": 6136729,
+              "building_instructions": [
+                {
+                  "sequence": {
+                    "total": 1,
+                    "element": 1
+                  },
+                  "image": {
+                    "size": 153422,
+                    "modifiedDate": "2019-09-24T13:41:10",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.core.img/6178324.png"
+                  },
+                  "file": {
+                    "size": 164225724,
+                    "modifiedDate": "2019-09-24T12:07:24.9197726",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6178324.pdf"
+                  },
+                  "description": "BI 85130, 296+4/100+400G, 75159 V29",
+                  "id": "6178324",
+                  "type": "product.bi.core"
+                },
+                {
+                  "sequence": {
+                    "total": 1,
+                    "element": 1
+                  },
+                  "image": {
+                    "size": 135232,
+                    "modifiedDate": "2019-11-20T11:51:16",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - DE.png"
+                  },
+                  "metaData": {
+                    "locales": [
+                      "de-de",
+                      "de-at",
+                      "de-ch",
+                      "de-lu"
+                    ]
+                  },
+                  "file": {
+                    "size": 22700791,
+                    "modifiedDate": "2019-11-20T11:51:15.5811885",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - DE.pdf"
+                  },
+                  "description": "75159_X_Digital Booklet - DE",
+                  "type": "product.bi.additional.info"
+                },
+                {
+                  "sequence": {
+                    "total": 1,
+                    "element": 1
+                  },
+                  "image": {
+                    "size": 135232,
+                    "modifiedDate": "2019-11-20T11:51:16",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - ES.png"
+                  },
+                  "metaData": {
+                    "locales": [
+                      "es-es",
+                      "es-ar",
+                      "es-mx"
+                    ]
+                  },
+                  "file": {
+                    "size": 22731685,
+                    "modifiedDate": "2019-11-20T11:51:17.5614466",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - ES.pdf"
+                  },
+                  "description": "75159_X_Digital Booklet - ES",
+                  "type": "product.bi.additional.info"
+                },
+                {
+                  "sequence": {
+                    "total": 1,
+                    "element": 1
+                  },
+                  "image": {
+                    "size": 135232,
+                    "modifiedDate": "2019-11-20T11:51:16",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - FR.png"
+                  },
+                  "metaData": {
+                    "locales": [
+                      "fr-ch",
+                      "fr-lu",
+                      "fr-fr",
+                      "fr-be",
+                      "fr-ca"
+                    ]
+                  },
+                  "file": {
+                    "size": 21935185,
+                    "modifiedDate": "2019-11-20T11:51:19.3043444",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - FR.pdf"
+                  },
+                  "description": "75159_X_Digital Booklet - FR",
+                  "type": "product.bi.additional.info"
+                },
+                {
+                  "sequence": {
+                    "total": 1,
+                    "element": 1
+                  },
+                  "image": {
+                    "size": 135232,
+                    "modifiedDate": "2019-11-20T11:51:16",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - HU.png"
+                  },
+                  "metaData": {
+                    "locales": [
+                      "hu-hu"
+                    ]
+                  },
+                  "file": {
+                    "size": 21967717,
+                    "modifiedDate": "2019-11-20T11:51:20.9167945",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - HU.pdf"
+                  },
+                  "description": "75159_X_Digital Booklet - HU",
+                  "type": "product.bi.additional.info"
+                },
+                {
+                  "sequence": {
+                    "total": 1,
+                    "element": 1
+                  },
+                  "image": {
+                    "size": 135232,
+                    "modifiedDate": "2019-11-20T11:51:16",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - PT.png"
+                  },
+                  "metaData": {
+                    "locales": [
+                      "pt-pt",
+                      "pt-br"
+                    ]
+                  },
+                  "file": {
+                    "size": 22800663,
+                    "modifiedDate": "2019-11-20T11:51:22.8948884",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - PT.pdf"
+                  },
+                  "description": "75159_X_Digital Booklet - PT",
+                  "type": "product.bi.additional.info"
+                },
+                {
+                  "sequence": {
+                    "total": 1,
+                    "element": 1
+                  },
+                  "image": {
+                    "size": 135232,
+                    "modifiedDate": "2019-11-20T11:51:16",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - ZH.png"
+                  },
+                  "metaData": {
+                    "locales": [
+                      "zh-cn"
+                    ]
+                  },
+                  "file": {
+                    "size": 23016251,
+                    "modifiedDate": "2019-11-20T11:51:24.6123129",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - ZH.pdf"
+                  },
+                  "description": "75159_X_Digital Booklet - ZH",
+                  "type": "product.bi.additional.info"
+                }
+              ],
+              "availability": {
+                "marketingExitDate": "2020-12-31T00:00:00",
+                "launchDate": "2016-10-01T00:00:00"
+              },
+              "measurements": {
+                "itemId": 6136729,
+                "length": 585.0,
+                "width": 490.0,
+                "sizeUnit": "MM",
+                "height": 190.0
+              }
+            },
+            {
+              "characteristics": {
+                "isBatteryOperated": false,
+                "hasSmallBall": true,
+                "hasPullbackFunctionality": false
+              },
+              "piece_count": 4016,
+              "item_id": 6136731,
+              "building_instructions": [
+                {
+                  "sequence": {
+                    "total": 1,
+                    "element": 1
+                  },
+                  "image": {
+                    "size": 153324,
+                    "modifiedDate": "2019-09-24T13:51:08",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.core.img/6182624.png"
+                  },
+                  "file": {
+                    "size": 190371973,
+                    "modifiedDate": "2019-09-24T12:25:10.3598067",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6182624.pdf"
+                  },
+                  "description": "BI 85130, 320+4/100+400G, 75159 V39",
+                  "id": "6182624",
+                  "type": "product.bi.core"
+                },
+                {
+                  "sequence": {
+                    "total": 1,
+                    "element": 1
+                  },
+                  "image": {
+                    "size": 135232,
+                    "modifiedDate": "2019-11-20T11:51:16",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - DE.png"
+                  },
+                  "metaData": {
+                    "locales": [
+                      "de-de",
+                      "de-at",
+                      "de-ch",
+                      "de-lu"
+                    ]
+                  },
+                  "file": {
+                    "size": 22700791,
+                    "modifiedDate": "2019-11-20T11:51:15.5811885",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - DE.pdf"
+                  },
+                  "description": "75159_X_Digital Booklet - DE",
+                  "type": "product.bi.additional.info"
+                },
+                {
+                  "sequence": {
+                    "total": 1,
+                    "element": 1
+                  },
+                  "image": {
+                    "size": 135232,
+                    "modifiedDate": "2019-11-20T11:51:16",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - ES.png"
+                  },
+                  "metaData": {
+                    "locales": [
+                      "es-es",
+                      "es-ar",
+                      "es-mx"
+                    ]
+                  },
+                  "file": {
+                    "size": 22731685,
+                    "modifiedDate": "2019-11-20T11:51:17.5614466",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - ES.pdf"
+                  },
+                  "description": "75159_X_Digital Booklet - ES",
+                  "type": "product.bi.additional.info"
+                },
+                {
+                  "sequence": {
+                    "total": 1,
+                    "element": 1
+                  },
+                  "image": {
+                    "size": 135232,
+                    "modifiedDate": "2019-11-20T11:51:16",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - FR.png"
+                  },
+                  "metaData": {
+                    "locales": [
+                      "fr-ch",
+                      "fr-lu",
+                      "fr-fr",
+                      "fr-be",
+                      "fr-ca"
+                    ]
+                  },
+                  "file": {
+                    "size": 21935185,
+                    "modifiedDate": "2019-11-20T11:51:19.3043444",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - FR.pdf"
+                  },
+                  "description": "75159_X_Digital Booklet - FR",
+                  "type": "product.bi.additional.info"
+                },
+                {
+                  "sequence": {
+                    "total": 1,
+                    "element": 1
+                  },
+                  "image": {
+                    "size": 135232,
+                    "modifiedDate": "2019-11-20T11:51:16",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - HU.png"
+                  },
+                  "metaData": {
+                    "locales": [
+                      "hu-hu"
+                    ]
+                  },
+                  "file": {
+                    "size": 21967717,
+                    "modifiedDate": "2019-11-20T11:51:20.9167945",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - HU.pdf"
+                  },
+                  "description": "75159_X_Digital Booklet - HU",
+                  "type": "product.bi.additional.info"
+                },
+                {
+                  "sequence": {
+                    "total": 1,
+                    "element": 1
+                  },
+                  "image": {
+                    "size": 135232,
+                    "modifiedDate": "2019-11-20T11:51:16",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - PT.png"
+                  },
+                  "metaData": {
+                    "locales": [
+                      "pt-pt",
+                      "pt-br"
+                    ]
+                  },
+                  "file": {
+                    "size": 22800663,
+                    "modifiedDate": "2019-11-20T11:51:22.8948884",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - PT.pdf"
+                  },
+                  "description": "75159_X_Digital Booklet - PT",
+                  "type": "product.bi.additional.info"
+                },
+                {
+                  "sequence": {
+                    "total": 1,
+                    "element": 1
+                  },
+                  "image": {
+                    "size": 135232,
+                    "modifiedDate": "2019-11-20T11:51:16",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.img/75159_X_Digital Booklet - ZH.png"
+                  },
+                  "metaData": {
+                    "locales": [
+                      "zh-cn"
+                    ]
+                  },
+                  "file": {
+                    "size": 23016251,
+                    "modifiedDate": "2019-11-20T11:51:24.6123129",
+                    "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.info.pdf/75159_X_Digital Booklet - ZH.pdf"
+                  },
+                  "description": "75159_X_Digital Booklet - ZH",
+                  "type": "product.bi.additional.info"
+                }
+              ],
+              "availability": {
+                "marketingExitDate": "2020-12-31T00:00:00",
+                "launchDate": "2016-10-01T00:00:00"
+              },
+              "measurements": {
+                "itemId": 6136731,
+                "length": 585.0,
+                "width": 490.0,
+                "sizeUnit": "MM",
+                "height": 190.0
+              }
+            }
+          ],
+          "themes": [
+            {
+              "primary_image": {
+                "uid": "blt957b0a43fd536dc2",
+                "filename": "sw_standard_original_srgb_2hy17.png",
+                "altText": "Star Wars™",
+                "size": 66483,
+                "modifiedDate": "2020-09-15T07:58:02.567Z",
+                "title": "sw_standard_original_srgb_2hy17.png",
+                "contentType": "image/png",
+                "imageType": "primary_image",
+                "url": "https://www.lego.com/cdn/cs/catalog/assets/blt957b0a43fd536dc2/1/sw_standard_original_srgb_2hy17.png"
+              },
+              "images": [
+                {
+                  "uid": "blt95b35c9e185d464b",
+                  "filename": "1125x240_SWAS.jpg",
+                  "altText": "LEGO® Star Wars™",
+                  "size": 135289,
+                  "modifiedDate": "2019-10-23T12:46:28.087Z",
+                  "description": "/r/www/r/catalogs/-/media/catalogs/tags/star wars/2018/1125x240_swas.jpg",
+                  "title": "1125x240_SWAS.jpg",
+                  "contentType": "image/jpeg",
+                  "imageType": "banner",
+                  "url": "https://www.lego.com/cdn/cs/catalog/assets/blt95b35c9e185d464b/1/1125x240_SWAS.jpg"
+                },
+                {
+                  "uid": "bltff1957f11f379f6d",
+                  "filename": "Background_SW_primary.jpg",
+                  "altText": "",
+                  "size": 83121,
+                  "modifiedDate": "2021-01-18T08:16:36.329Z",
+                  "title": "Background_SW_primary.jpg",
+                  "contentType": "image/jpeg",
+                  "imageType": "background",
+                  "url": "https://www.lego.com/cdn/cs/catalog/assets/bltff1957f11f379f6d/1/Background_SW_primary.jpg"
+                },
+                {
+                  "uid": "blt72a7d1b5559a5dd5",
+                  "filename": "StarWars_dbixthemecard_nov2021.png",
+                  "altText": "",
+                  "size": 1300095,
+                  "modifiedDate": "2021-11-17T13:33:23.155Z",
+                  "title": "StarWars_dbixthemecard_nov2021.png",
+                  "contentType": "image/png",
+                  "imageType": "card_image",
+                  "url": "https://www.lego.com/cdn/cs/catalog/assets/blt72a7d1b5559a5dd5/1/StarWars_dbixthemecard_nov2021.png"
+                },
+                {
+                  "uid": "blt4d235bd8ad89a154",
+                  "filename": "SW_D2C_Short_sRGB_2018.png",
+                  "altText": "",
+                  "size": 86764,
+                  "modifiedDate": "2019-10-23T12:46:26.512Z",
+                  "description": "/r/www/r/catalogs/-/media/catalogs/themes/2019 franchise logos/sw_d2c_short_srgb_2018.png",
+                  "title": "SW_D2C_Short_sRGB_2018.png",
+                  "contentType": "image/png",
+                  "imageType": "logo_portrait",
+                  "url": "https://www.lego.com/cdn/cs/catalog/assets/blt4d235bd8ad89a154/1/SW_D2C_Short_sRGB_2018.png"
+                },
+                {
+                  "uid": "blt957b0a43fd536dc2",
+                  "filename": "sw_standard_original_srgb_2hy17.png",
+                  "altText": "Star Wars™",
+                  "size": 66483,
+                  "modifiedDate": "2020-09-15T07:58:02.567Z",
+                  "title": "sw_standard_original_srgb_2hy17.png",
+                  "contentType": "image/png",
+                  "imageType": "primary_image",
+                  "url": "https://www.lego.com/cdn/cs/catalog/assets/blt957b0a43fd536dc2/1/sw_standard_original_srgb_2hy17.png"
+                }
+              ],
+              "isSubtheme": false,
+              "display_title": "",
+              "theme_id": {
+                "group_id": 140,
+                "theme_id": 20056,
+                "portal_id": 10000
+              },
+              "id": "ae537d16-848c-47d1-9c28-5a57aea1d87b",
+              "title": "Star Wars",
+              "locale": {
+                "fi-fi": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "uk-ua": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "nb-no": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "en-ca": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "en-us": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "lv-lv": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "lt-lt": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "en-za": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "ar-ae": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "sl-si": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "zh-cn": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "nl-be": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "de-at": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "el-gr": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "en-my": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "nl-nl": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "fr-ch": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "en-au": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "cs-cz": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "fo-fo": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "Lf2Ef2Gf2Of2® Sf",
+                  "tags": []
+                },
+                "de-ch": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "ja-jp": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "レゴ®スター・ウォーズ",
+                  "tags": []
+                },
+                "hu-hu": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "de-de": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "zh-tw": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "zh-hk": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "pt-br": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "ko-kr": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "레고® 스타워즈™:",
+                  "tags": []
+                },
+                "sk-sk": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "es-es": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "es-mx": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "fr-ca": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "it-it": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "ru-ru": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "en-nz": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "pl-pl": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "pt-pt": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "es-ar": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "ro-ro": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "fr-be": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "sv-se": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "en-sg": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "da-dk": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "tr-tr": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "et-ee": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "fr-fr": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                },
+                "en-gb": {
+                  "characters": [],
+                  "features": [],
+                  "display_title": "LEGO® Star Wars™",
+                  "tags": []
+                }
+              }
+            }
+          ],
+          "assets": [
+            {
+              "itemId": "50075159",
+              "modifiedDate": "2020-08-20T15:29:45.1336748",
+              "assetFiles": [
+                {
+                  "extension": ".jpg",
+                  "fileName": "75159_Prod.jpg",
+                  "size": 283700,
+                  "metaTags": {
+                    "image": {
+                      "width": 400,
+                      "height": 768
+                    }
+                  },
+                  "modifiedDate": "0001-01-01T00:00:00",
+                  "type": "product.img.pri",
+                  "url": "https://www.lego.com/cdn/product-assets/product.img.pri/75159_Prod.jpg"
+                }
+              ],
+              "type": "product.img.pri",
+              "baseName": "75159_Prod"
+            }
+          ],
+          "availability": {
+            "marketingExitDate": "2020-12-31T00:00:00",
+            "launchDate": "2016-10-01T00:00:00"
+          },
+          "locale": {
+            "en-us": {
+              "additional_data": {
+                "additional_images": [
+                  {
+                    "kid_image": {
+                      "image": {
+                        "uid": "bltd8a37fe66125ebd1",
+                        "filename": "LEGO_75159_WEB_SEC01_1488.jpg",
+                        "content_type": "image/jpeg",
+                        "alt_text": "",
+                        "description": "/r/www/r/catalogs/-/media/catalogs/products/star wars/2016/75159/lego_75159_web_sec01_1488.jpg",
+                        "file_size": "303303",
+                        "url": "https://www.lego.com/cdn/cs/catalog/assets/bltd8a37fe66125ebd1/1/LEGO_75159_WEB_SEC01_1488.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "kid_image": {
+                      "image": {
+                        "uid": "bltee11c12173978134",
+                        "filename": "LEGO_75159_WEB_SEC02_1488.jpg",
+                        "content_type": "image/jpeg",
+                        "alt_text": "",
+                        "description": "/r/www/r/catalogs/-/media/catalogs/products/star wars/2016/75159/lego_75159_web_sec02_1488.jpg",
+                        "file_size": "299263",
+                        "url": "https://www.lego.com/cdn/cs/catalog/assets/bltee11c12173978134/1/LEGO_75159_WEB_SEC02_1488.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "kid_image": {
+                      "image": {
+                        "uid": "blt7e94157e05dc2543",
+                        "filename": "LEGO_75159_WEB_SEC03_1488.jpg",
+                        "content_type": "image/jpeg",
+                        "alt_text": "",
+                        "description": "/r/www/r/catalogs/-/media/catalogs/products/star wars/2016/75159/lego_75159_web_sec03_1488.jpg",
+                        "file_size": "248858",
+                        "url": "https://www.lego.com/cdn/cs/catalog/assets/blt7e94157e05dc2543/1/LEGO_75159_WEB_SEC03_1488.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "kid_image": {
+                      "image": {
+                        "uid": "blt66acaa4beec153ce",
+                        "filename": "LEGO_75159_WEB_SEC04_1488.jpg",
+                        "content_type": "image/jpeg",
+                        "alt_text": "",
+                        "description": "/r/www/r/catalogs/-/media/catalogs/products/star wars/2016/75159/lego_75159_web_sec04_1488.jpg",
+                        "file_size": "250860",
+                        "url": "https://www.lego.com/cdn/cs/catalog/assets/blt66acaa4beec153ce/1/LEGO_75159_WEB_SEC04_1488.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "kid_image": {
+                      "image": {
+                        "uid": "bltc8afbd5bf6f6ad36",
+                        "filename": "LEGO_75159_WEB_SEC05_1488.jpg",
+                        "content_type": "image/jpeg",
+                        "alt_text": "",
+                        "description": "/r/www/r/catalogs/-/media/catalogs/products/star wars/2016/75159/lego_75159_web_sec05_1488.jpg",
+                        "file_size": "333534",
+                        "url": "https://www.lego.com/cdn/cs/catalog/assets/bltc8afbd5bf6f6ad36/1/LEGO_75159_WEB_SEC05_1488.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "grown_up_image": {
+                      "image": {
+                        "uid": "bltb28f6c440592f1bb",
+                        "filename": "LEGO_75159_Box1_v39.jpg",
+                        "content_type": "image/jpeg",
+                        "alt_text": "",
+                        "description": "/r/www/r/catalogs/-/media/catalogs/products/grownup/75120/lego_75159_box1_v39.jpg",
+                        "file_size": "844737",
+                        "url": "https://www.lego.com/cdn/cs/catalog/assets/bltb28f6c440592f1bb/1/LEGO_75159_Box1_v39.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "grown_up_image": {
+                      "image": {
+                        "uid": "bltec6760a4e8a7059d",
+                        "filename": "LEGO_75159_Box5_v39.jpg",
+                        "content_type": "image/jpeg",
+                        "alt_text": "",
+                        "description": "/r/www/r/catalogs/-/media/catalogs/products/grownup/75120/lego_75159_box5_v39.jpg",
+                        "file_size": "886652",
+                        "url": "https://www.lego.com/cdn/cs/catalog/assets/bltec6760a4e8a7059d/1/LEGO_75159_Box5_v39.jpg"
+                      }
+                    }
+                  }
+                ],
+                "box_image": {
+                  "uid": "blt4a59543b7fd5ae44",
+                  "filename": "LEGO_75159_Box1_v39_1488.png",
+                  "content_type": "image/png",
+                  "description": "/r/www/r/catalogs/-/media/catalogs/products/star wars/2016/75159/lego_75159_box1_v39_1488.png",
+                  "file_size": "296085",
+                  "url": "https://www.lego.com/cdn/cs/catalog/assets/blt4a59543b7fd5ae44/1/LEGO_75159_Box1_v39_1488.png"
+                },
+                "uid": "bltc36acf3b33ff53eb",
+                "hide_dbix_availability": false,
+                "sitecore_id": "1662d32c-c558-456f-840c-13200d5c6e24",
+                "primary_image_grownups": {
+                  "uid": "bltaf50f0d6c7d66e2b",
+                  "filename": "LEGO_75159_Prod.jpg",
+                  "content_type": "image/jpeg",
+                  "description": "/r/www/r/catalogs/-/media/catalogs/products/grownup/75120/lego_75159_prod.jpg",
+                  "file_size": "619034",
+                  "url": "https://www.lego.com/cdn/cs/catalog/assets/bltaf50f0d6c7d66e2b/1/LEGO_75159_Prod.jpg"
+                },
+                "seo_content": {
+                  "og_title": null,
+                  "description": null,
+                  "og_image": null
+                }
+              },
+              "bullet_points": "• Includes 23 minifigures: Grand Moff Tarkin, Darth Vader, Emperor Palpatine, Imperial Navy Officer, Imperial Officer, 2 Stormtroopers, 2 Death Star Troopers, 2 Emperor's Royal Guards, 2 Death Star Gunners, Death Star Droid, Obi-Wan Kenobi, Chewbacca, Princess Leia, C-3PO, Han Solo, Han Solo (disguise), Luke Skywalker (Tatooine), Luke Skywalker (disguise) and Luke Skywalker (final duel), plus R2-D2, an Imperial Astromech and a Dianoga trash compactor monster.\r\n• Features a superlaser control room, Imperial conference chamber, hangar bay with moving launch rack and detachable TIE Advanced with space for Lord Vader inside, Emperor Palpatine’s throne room, Droid maintenance room, detention block, trash compactor, tractor beam, cargo area, turbo laser with spring-loaded shooters and seats for the 2 Death Star gunners, and 2 movable turbo laser towers.\r\n• Weapons include 3 Lightsabers, 4 blasters, 3 blaster pistols, 4 blaster rifles, 2 force pikes, 2 Force Lightning elements and a bowcaster.\r\n• Load up and fire the turbo laser’s spring-loaded shooters to keep the rebels at bay.\r\n• Maneuver Lord Vader’s TIE Advanced into position and prepare for launch.\r\n• Battle the Royal Guard in the throne room and then take on Palpatine himself!\r\n• Help Leia escape from the detention block and swing to safety with Luke across the chasm!\r\n• Will Obi-Wan shut down the tractor beam and help the rebels defeat the Empire?\r\n• Can you spot the Dianoga trash compactor monster?\r\n• Recreate other unforgettable scenes from the classic Star Wars films.\r\n• The perfect addition to any LEGO® Star Wars collection.\r\n• This set offers an age-appropriate building experience for ages 14 and over.\r\n• Measures over 16” (41cm) high, and 16” (42cm) wide.",
+              "comm_bullet_points": "• Build the giant, super-detailed ultimate battle station of the evil Empire\r\n• Includes key locations and features from Star Wars: Episode IV A New Hope and Star Wars: Episode VI Return of the Jedi\r\n• Includes 23 minifigures: Grand Moff Tarkin, Darth Vader, Emperor Palpatine, Imperial Navy Officer, Imperial Officer, 2 Stormtroopers, 2 Death Star Troopers, 2 Emperor's Royal Guards, 2 Death Star Gunners, Death Star Droid, Obi-Wan Kenobi, Chewbacca, Princess Leia, C-3PO, Han Solo (disguised), LukeSkywalker (Tatooine), Luke Skywalker (disguised) and Luke Skywalker (Final Duel), plus R2-D2, an Imperial Astromech and a buildable Dianoga trash compactor monster\r\n• LEGO Star Wars building toys are compatible with all LEGO construction sets for creative building\r\n• Measures over 16” high and 16” wide\r\n• 4,016 pieces – For boys and girls 14 years and older",
+              "display_title": "Death Star™",
+              "one_liner": "Rule the galaxy from the Imperial Death Star with superlaser, conference chamber, hangar with TIE Advanced, throne room, detention block, 23 minifigures and 2 Droids.",
+              "description": "Take command of the ultimate Imperial weapon—the Death Star! This amazing Star Wars model has so many great rooms, chambers, hangars and more, you won’t know where to start. Operate the giant superlaser from the control room, plan missions in the conference chamber, and launch Lord Vader's TIE Advanced from the hangar bay. Fix Droids in the maintenance room, keep prisoners secure in the detention block and overpower rebel starships with the spring-loaded shooter turbo laser, turbo laser towers and powerful tractor beam. You can even visit Emperor Palpatine in his throne room, keep things moving in the cargo area, and take out the trash in the trash compactor. And of course no Death Star story would be complete without Obi-Wan Kenobi, Luke Skywalker and Han Solo doing their best to destroy the Empire's fearsome Death Star! Will they foil the plans of Vader and the other Imperial characters? The fate of the Death Star is in your hands…",
+              "title": "Death Star™",
+              "headline": "Win the battle for the Empire with the awesome Death Star!",
+              "tags": [
+                "fictional past",
+                "vehicle",
+                "tool",
+                "staff",
+                "weapon",
+                "flick missile",
+                "laser",
+                "cannon",
+                "ball",
+                "garage",
+                "princess",
+                "warrior",
+                "robot",
+                "battle",
+                "fiction",
+                "space",
+                "star",
+                "airplane"
+              ]
+            }
+          },
+          "product_number": "75159"
+        }
+      }
+    ]
+  }
+}

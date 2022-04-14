@@ -199,11 +199,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bbdnet2582\\source\\repos\\LegoCollectionManager\\LegoCollectionManagerAPI\\LegoCollectionManagerAPI.csproj",
+      "projectUniqueName": "C:\\Users\\bbdnet2582\\Documents\\GitHub\\LEGO-Collections-Manager\\LegoCollectionManager\\LegoCollectionManagerAPI\\LegoCollectionManagerAPI.csproj",
       "projectName": "LegoCollectionManagerAPI",
-      "projectPath": "C:\\Users\\bbdnet2582\\source\\repos\\LegoCollectionManager\\LegoCollectionManagerAPI\\LegoCollectionManagerAPI.csproj",
+      "projectPath": "C:\\Users\\bbdnet2582\\Documents\\GitHub\\LEGO-Collections-Manager\\LegoCollectionManager\\LegoCollectionManagerAPI\\LegoCollectionManagerAPI.csproj",
       "packagesPath": "C:\\Users\\bbdnet2582\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bbdnet2582\\source\\repos\\LegoCollectionManager\\LegoCollectionManagerAPI\\obj\\",
+      "outputPath": "C:\\Users\\bbdnet2582\\Documents\\GitHub\\LEGO-Collections-Manager\\LegoCollectionManager\\LegoCollectionManagerAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -259,7 +259,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

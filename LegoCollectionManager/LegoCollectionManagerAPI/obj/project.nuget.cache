@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ozAwmcEIHQ0KJMrxL8DUDKfoadkSYyFGEgl7Aen9B1gBQX2fCupBCZnmvwUcFjysBzu0HYp0TJhYukbU4HhGKA==",
+  "dgSpecHash": "Jzv8cpuO2XXNvG9Rba8r+PSAupTFn09/LHSz2r8NIlcSqKZgO8AAvSkM33ikkw/iyoJLR9AxfvmRavqjzSQF6Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bbdnet2582\\source\\repos\\LegoCollectionManager\\LegoCollectionManagerAPI\\LegoCollectionManagerAPI.csproj",
+  "projectFilePath": "C:\\Users\\bbdnet2582\\Documents\\GitHub\\LEGO-Collections-Manager\\LegoCollectionManager\\LegoCollectionManagerAPI\\LegoCollectionManagerAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bbdnet2582\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\bbdnet2582\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

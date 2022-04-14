@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bbdnet2582\\source\\repos\\LegoCollectionManager\\LegoCollectionManager\\LegoCollectionManager.csproj": {}
+    "C:\\Users\\bbdnet2582\\Documents\\GitHub\\LEGO-Collections-Manager\\LegoCollectionManager\\LegoCollectionManager\\LegoCollectionManager.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bbdnet2582\\source\\repos\\LegoCollectionManager\\LegoCollectionManager\\LegoCollectionManager.csproj": {
+    "C:\\Users\\bbdnet2582\\Documents\\GitHub\\LEGO-Collections-Manager\\LegoCollectionManager\\LegoCollectionManager\\LegoCollectionManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bbdnet2582\\source\\repos\\LegoCollectionManager\\LegoCollectionManager\\LegoCollectionManager.csproj",
+        "projectUniqueName": "C:\\Users\\bbdnet2582\\Documents\\GitHub\\LEGO-Collections-Manager\\LegoCollectionManager\\LegoCollectionManager\\LegoCollectionManager.csproj",
         "projectName": "LegoCollectionManager",
-        "projectPath": "C:\\Users\\bbdnet2582\\source\\repos\\LegoCollectionManager\\LegoCollectionManager\\LegoCollectionManager.csproj",
+        "projectPath": "C:\\Users\\bbdnet2582\\Documents\\GitHub\\LEGO-Collections-Manager\\LegoCollectionManager\\LegoCollectionManager\\LegoCollectionManager.csproj",
         "packagesPath": "C:\\Users\\bbdnet2582\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bbdnet2582\\source\\repos\\LegoCollectionManager\\LegoCollectionManager\\obj\\",
+        "outputPath": "C:\\Users\\bbdnet2582\\Documents\\GitHub\\LEGO-Collections-Manager\\LegoCollectionManager\\LegoCollectionManager\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -47,6 +47,26 @@
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
               "version": "[5.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.15, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[5.0.2, )"
             }
           },
           "imports": [
@@ -67,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

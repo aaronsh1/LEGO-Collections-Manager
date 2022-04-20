@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using LegoCollectionManager.Models;
 using System.Linq;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace LegoCollectionManager.Controllers
 {
@@ -17,11 +19,38 @@ namespace LegoCollectionManager.Controllers
         }
 
         // GET: UserController/Login
-        public RedirectToActionResult Login(string username)
+        public ActionResult Login(FormCollection form)
         {
+            ViewBag.IncorrectPassword = "";
             User userToReturn = (from u in _context.Users
-                                 where u.Username == username
+                                 where u.Username == form["username"]
                                  select u).ToList().FirstOrDefault();
+
+            string password = form["password"];
+            string saltFromDb = userToReturn.Salt;
+            byte[] salt = System.Text.Encoding.ASCII.GetBytes(saltFromDb);
+            string passwordFromDb = userToReturn.Password;
+
+
+
+            string hashedPassword = System.Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: password,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA256,
+                iterationCount: 100000,
+                numBytesRequested: 256 / 8));
+
+
+            if (passwordFromDb != hashedPassword)
+            {
+                ViewBag.IncorrectPassword = "Incorrect Username or Password. Please Try Again.";
+                return View("Index");
+            }
+
+            string SessionUserId = "_UserId";
+
+            HttpContext.Session.SetInt32(SessionUserId, userToReturn.UserId);
+
             return RedirectToAction("Details", new { id = userToReturn.UserId });
         }
 
@@ -45,8 +74,31 @@ namespace LegoCollectionManager.Controllers
         // POST: UserController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(User userToAdd)
+        public ActionResult Create(FormCollection form)
         {
+            string username = form["username"];
+            string password = form["password"];
+
+            byte[] salt = new byte[128 / 8];
+
+            using (var rngCsp = new RNGCryptoServiceProvider())
+            {
+                rngCsp.GetNonZeroBytes(salt);
+            }
+
+            string hashedPassword = System.Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: password,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA256,
+                iterationCount: 100000,
+                numBytesRequested: 256 / 8));
+
+            User userToAdd = new User();
+            userToAdd.Username = username;
+            userToAdd.Salt = System.Convert.ToBase64String(salt);
+            userToAdd.Password = hashedPassword;
+
+
             _context.Users.Add(userToAdd);
             _context.SaveChanges();
 

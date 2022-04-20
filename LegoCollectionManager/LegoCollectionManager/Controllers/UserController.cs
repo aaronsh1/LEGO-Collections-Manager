@@ -55,11 +55,11 @@ namespace LegoCollectionManager.Controllers
         }
 
         // GET: UserController/Login
-        public ActionResult Login(IFormCollection form)
+        public ActionResult Login(string Username, string Password)
         {
             ViewData["IncorrectPassword"] = "";
             User userToReturn = (from u in _context.Users
-                                 where u.Username == form["username"].ToString()
+                                 where u.Username == Username
                                  select u).FirstOrDefault();
 
             if (userToReturn == null)
@@ -68,15 +68,14 @@ namespace LegoCollectionManager.Controllers
                 return View("Index");
             }
 
-            string password = form["password"];
             string saltFromDb = userToReturn.Salt;
-            byte[] salt = System.Text.Encoding.ASCII.GetBytes(saltFromDb);
+            byte[] salt = Convert.FromBase64String(saltFromDb);
             string passwordFromDb = userToReturn.Password;
 
 
 
             string hashedPassword = System.Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                password: password,
+                password: Password,
                 salt: salt,
                 prf: KeyDerivationPrf.HMACSHA256,
                 iterationCount: 100000,
@@ -86,6 +85,7 @@ namespace LegoCollectionManager.Controllers
             if (passwordFromDb != hashedPassword)
             {
                 validPassword = false;
+                ViewData["IncorrectPassword"] = "Incorrect Username or Password. Please Try Again.";
                 return View("Index");
             }
             validPassword = true;
@@ -93,6 +93,14 @@ namespace LegoCollectionManager.Controllers
             string SessionUserId = "_UserId";
 
             HttpContext.Session.SetInt32(SessionUserId, userToReturn.UserId);
+
+            ViewBag.UserAvatar = (from ua in _context.UserAvatars
+                                  join a in _context.Avatars on ua.Avatar equals a.AvatarId
+                                  where ua.User == userToReturn.UserId
+                                  select new
+                                  {
+                                      link = a.Url
+                                  }).FirstOrDefault().link;
 
             return RedirectToAction("Details", new { id = userToReturn.UserId });
         }
@@ -131,6 +139,14 @@ namespace LegoCollectionManager.Controllers
             _context.SaveChanges();
 
             int userToReturn = (int)HttpContext.Session.GetInt32("_UserId");
+
+            ViewBag.UserAvatar = (from ua in _context.UserAvatars
+                                  join a in _context.Avatars on ua.Avatar equals a.AvatarId
+                                  where a.AvatarId == avatarId
+                                  select new
+                                  {
+                                      link = a.Url
+                                  }).FirstOrDefault().link;
 
             return RedirectToAction("Details", new { id = userToReturn });
         }

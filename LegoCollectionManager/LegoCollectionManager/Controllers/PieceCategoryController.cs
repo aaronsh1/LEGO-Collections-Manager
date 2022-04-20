@@ -33,7 +33,7 @@ namespace LegoCollectionManager.Controllers
     {
       ViewData["dictionary"] = dictionary[_context.PieceCategories.Select(x => x.PieceCategoryName).First()];
       ViewData["displayData"] = _context.PieceCategories.Select(x => x.PieceCategoryName).ToList();
-      ViewData["displayData"] = _context.PieceCategories.Select(x => x.PieceCategoryName).First();
+      ViewData["category"] = _context.PieceCategories.Select(x => x.PieceCategoryName).First();
       return View();
     }
 
@@ -41,7 +41,7 @@ namespace LegoCollectionManager.Controllers
     {
       ViewData["dictionary"] = dictionary[value];
       ViewData["displayData"] = _context.PieceCategories.Select(x => x.PieceCategoryName).ToList();
-      ViewData["displayData"] = _context.PieceCategories.Select(x => x.PieceCategoryName).First();
+      ViewData["category"] = _context.PieceCategories.Select(x => x.PieceCategoryName).First();
       return View();
     }
   }

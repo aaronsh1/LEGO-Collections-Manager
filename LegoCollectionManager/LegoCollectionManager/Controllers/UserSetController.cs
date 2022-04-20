@@ -54,6 +54,16 @@ namespace LegoCollectionManager.Controllers
             return View(userSetToReturn);
         }
 
+        // GET: UserSet/AddSet
+        public RedirectToActionResult AddSet(string Set)
+        {
+            
+            System.Console.WriteLine(Set);
+            System.Console.WriteLine(ViewBag.UserId.toString());
+
+            return RedirectToAction("Index");
+        }
+
         // POST: UserSet/Create
         [HttpPost]
         [ValidateAntiForgeryToken]

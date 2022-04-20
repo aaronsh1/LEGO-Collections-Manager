@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Web;
 using LegoCollectionManager.Models;
+using LegoCollectionManager.SetInformation; 
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -85,9 +86,12 @@ namespace LegoCollectionManager.Controllers
             if (id == null)
                 return NotFound();
 
-            Set setToReturn = new Set();
-            setToReturn = _context.Sets.Find(id);
-            return View(setToReturn);
+            SetInformationUtil util = new SetInformationUtil();
+
+            SetInformation.SetInformation setInfo = util.GetSetInformation(id ?? 0);
+            Set setModel = _context.Sets.Find(id);
+
+            return View(SetInformationDTO.GetDTO(setModel, setInfo));
         }
 
         // GET: SetController/Create

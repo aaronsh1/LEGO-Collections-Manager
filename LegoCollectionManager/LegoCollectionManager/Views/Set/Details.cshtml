@@ -1,4 +1,4 @@
-﻿@model LegoCollectionManager.Models.Set
+﻿@model LegoCollectionManager.SetInformation.SetInformationDTO;
 
 @{
     ViewData["Title"] = "Details";
@@ -6,43 +6,53 @@
 
 <h1>Details</h1>
 
+<style>
+    img {
+        max-width: 400px;
+        margin: 15px;
+    }
+</style>
+
 <div>
-    <h4>Set</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SetName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SetName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PiecesAmount)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PiecesAmount)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ShopLink)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ShopLink)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SetCategoryNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SetCategoryNavigation.SetCategoryId)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.SetId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    @if (Model == null)
+    {
+        <h1>Set not found</h1>
+    } else {
+
+        <h1>@Model.Name</h1>
+        <p>@Model.Id</p>
+        <p>Pieces: @Model.PieceCount</p>
+
+        <h2>Description</h2>
+        <p>@Model.OneLiner</p>
+        <p>@Model.Description</p>
+
+        @for (int i = 0; i < Model.BulletPoints?.Length; i++)
+        {   
+            <p>@Model.BulletPoints[i]</p>
+        }
+
+        <h2>Instructions</h2>
+        //TODO: Display Instruction numbers
+        @for (int i = 0; i < Model.Instructions.Length; i++)
+        {        
+            <a href="@Model.Instructions[i].FileUrl" target="_blank">
+                <img src="@Model.Instructions[i].ImageUrl"/>
+            </a>
+        }
+
+        <h2>Images</h2>
+        //TODO: Images carousel
+        @for (int i = 0; i < Model.Images.Length; i++)
+        {   
+            <img src="@Model.Images[i].Url"/>
+        }
+
+        <h2>Additional Images</h2>
+        //TODO: Images carousel
+        @for (int i = 0; i < Model.AdditionalImages.Length; i++)
+        {   
+            <img src="@Model.AdditionalImages[i].Url"/>
+        }
+    }
 </div>

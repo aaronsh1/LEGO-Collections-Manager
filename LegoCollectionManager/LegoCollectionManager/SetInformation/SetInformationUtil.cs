@@ -19,8 +19,8 @@ namespace LegoCollectionManager.SetInformation
             this.LegoApiKey = apiKey;
         }
 
-        public SetInformation GetSetInformation(string id) {
-            dynamic DSI = GetDynamicSetInformation(id);
+        public SetInformation GetSetInformation(int id) {
+            dynamic DSI = GetDynamicSetInformation(id.ToString());
 
             int count = DSI?.hits?.total?.value ?? 0;
 
@@ -87,7 +87,7 @@ namespace LegoCollectionManager.SetInformation
                 };
             }
 
-            return new SetInformation()
+            var setInfo = new SetInformation()
             {
                 Id = info._id,
                 Name = info._source.locale["en-us"].display_title,
@@ -102,6 +102,8 @@ namespace LegoCollectionManager.SetInformation
                 Images = images,
                 AdditionalImages = additionalImages,
             };
+
+            return setInfo;
         }
 
         private static object GetSearchRequestBody(string id) {
@@ -177,35 +179,5 @@ namespace LegoCollectionManager.SetInformation
                 return null;
             }
         }
-    }
-
-    public class SetInformation { 
-        public string Id { get; init; }
-        public string Name { get; init; }
-        public string Description { get; init; }
-        public string Headline { get; init; }
-        public string OneLiner { get; init; }
-        public string[] BulletPoints { get; init; }
-        public int PieceCount { get; init; }
-        public BuildingInstructions[] Instructions { get; init; }
-        public LegoSetImage PrimaryImage { get; init; }
-        public LegoSetImage BoxImage { get; init; }
-        public LegoSetImage[] Images { get; init; }
-        public LegoSetImage[] AdditionalImages { get; init; }
-    }
-
-    public class BuildingInstructions { 
-        public string Id { get; init; }
-        public int SequenceNumber { get; init; }
-        public int SequenceTotal { get; init; }
-        public string ImageUrl { get; init; }
-        public string FileUrl { get; init; }
-    }
-
-    public class LegoSetImage { 
-        public string Uid { get; init; }
-        public string FileName { get; init; }
-        public string Url { get; init; }
-        public string ImageType { get; init; } //TODO: Create an enum
     }
 }

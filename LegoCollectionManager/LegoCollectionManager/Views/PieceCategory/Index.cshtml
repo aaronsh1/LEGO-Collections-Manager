@@ -1,0 +1,50 @@
+﻿@model IEnumerable<LegoCollectionManager.Models.Piece>
+
+@{
+  ViewData["Title"] = "Index";
+  var dictionary = this.ViewBag.dictionary as Dictionary<string, List<Piece>>;
+}
+
+<form action="/PieceCategory/Search" method="get">
+  <select name="value">
+    @foreach (var diction in dictionary)
+    {
+      <option value="@diction.Key">@diction.Key</option>
+    }
+  </select>
+  <p><input type="submit" value="Submit" /> </p>
+</form>
+
+
+
+
+@foreach (var diction in dictionary)
+{
+  <h1>@diction.Key</h1>
+  <table class="table">
+
+    <thead>
+      <tr>
+        <th>
+          @Html.DisplayNameFor(model => model.PieceName)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.PieceCategory)
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var item in diction.Value)
+      {
+        <tr>
+          <td>
+            @Html.DisplayFor(modelItem => item.PieceName)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.PieceCategory)
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}

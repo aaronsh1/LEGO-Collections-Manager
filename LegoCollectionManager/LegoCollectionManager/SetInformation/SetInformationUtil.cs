@@ -31,7 +31,7 @@ namespace LegoCollectionManager.SetInformation
             dynamic info = DSI?.hits?.hits?[0];
             dynamic versionedInfo = info?._source?.product_versions?.Last; 
             dynamic buildingInstructions = versionedInfo?.building_instructions;
-            dynamic themeInfo = info?._source?.themes?[0];
+            dynamic themeInfo = info?._source?.themes?.Last;
             dynamic locale = info?._source?.locale?["en-us"];
             dynamic additionalData = locale?.additional_data;
 
@@ -62,7 +62,7 @@ namespace LegoCollectionManager.SetInformation
                 Url = additionalData?.box_image?.url,
             };
 
-            LegoSetImage[] images = new LegoSetImage[themeInfo.images.Count];
+            LegoSetImage[] images = new LegoSetImage[themeInfo?.images?.Count ?? 0];
 
             for (int i = 0; i < images.Length; i++) {
                 images[i] = new LegoSetImage() { 
@@ -90,7 +90,7 @@ namespace LegoCollectionManager.SetInformation
             var setInfo = new SetInformation()
             {
                 Id = info._id,
-                Name = info._source.locale["en-us"].display_title,
+                Name = locale?.display_title,
                 Description = locale?.description,
                 BulletPoints = ((string)locale?.bullet_points)?.Split("\r\n"),
                 Headline = locale?.headline,
@@ -169,7 +169,7 @@ namespace LegoCollectionManager.SetInformation
                 string jsonResponse = reader.ReadToEnd();
 
                 dynamic resObject = JObject.Parse(jsonResponse);
-                
+
                 return resObject;
 
             }

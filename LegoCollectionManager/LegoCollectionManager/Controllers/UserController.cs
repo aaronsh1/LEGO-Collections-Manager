@@ -313,7 +313,7 @@ namespace LegoCollectionManager.Controllers
                 return NotFound();
 
             List<int?> categories = (from s in _context.Sets
-                                     join sc in _context.UserSets on s.SetId equals sc.UseSetId
+                                     join sc in _context.UserSets on s.SetId equals sc.Set
                                      where sc.User == userId
                                      select s.SetCategory).ToList();
 
@@ -381,6 +381,15 @@ namespace LegoCollectionManager.Controllers
             _context.UserSets.Remove(toDelete);
             _context.SaveChanges();
             return RedirectToAction("UserSets");
+        }
+
+        public ActionResult UserCustomSets()
+        {
+            int userId = (int)HttpContext.Session.GetInt32("_UserId");
+            List<CustomSet> sets = (from cs in _context.CustomSets
+                                    where cs.User == userId
+                                    select cs).ToList();
+            return View(sets);
         }
     }
 }

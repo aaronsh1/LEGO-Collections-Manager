@@ -1,0 +1,44 @@
+﻿@model LegoCollectionManager.Models.CustomSet
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>CustomSet</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CustomSetId" />
+            <div class="form-group">
+                <label asp-for="CustomSetName" class="control-label"></label>
+                <input asp-for="CustomSetName" class="form-control" />
+                <span asp-validation-for="CustomSetName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PiecesAmount" class="control-label"></label>
+                <input asp-for="PiecesAmount" class="form-control" />
+                <span asp-validation-for="PiecesAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomSetImage" class="control-label"></label>
+                <input asp-for="CustomSetImage" class="form-control" />
+                <span asp-validation-for="CustomSetImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

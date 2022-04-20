@@ -31,33 +31,26 @@ namespace LegoCollectionManager.SetInformation
         private SetInformationDTO() { }
 
         public static SetInformationDTO GetDTO(Set setModel, SetInformation setInformation) {
-            SetInformationDTO res = new SetInformationDTO();
+            SetInformationDTO res = new SetInformationDTO() { 
+                AdditionalImages = setInformation?.AdditionalImages,
+                BoxImage = setInformation?.BoxImage,
+                BulletPoints = setInformation?.BulletPoints,
+                Description = setInformation?.Description,
+                Headline = setInformation?.Headline,
+                Images = setInformation?.Images,
+                Instructions = setInformation?.Instructions,
+                OneLiner = setInformation?.OneLiner,
+                PrimaryImage = setInformation?.PrimaryImage,
+                PieceCount = setModel.PiecesAmount ?? setInformation?.PieceCount ?? 0,
+                SetCategoryNavigation = setModel.SetCategoryNavigation,
+                SetPieceCategories = setModel.SetPieceCategories,
+                SetPieces = setModel.SetPieces,
+                UserSets = setModel.UserSets,
+                SetCategory = setModel.SetCategory,
+                Name = setModel.SetName,
+                Id = setModel.SetId.ToString(),                
+            };
 
-            foreach (PropertyInfo property in typeof(SetInformationDTO).GetProperties())
-            {
-                PropertyInfo info;
-
-                if (setModel != null && (info = typeof(Set).GetProperty(property.Name)) != null) {
-                    var value = info.GetValue(setModel, null);
-                    
-                    if (value == null) {
-                        continue;
-                    }
-
-                    property.SetValue(res, value, null);
-                }
-
-                if (setInformation != null && (info = typeof(SetInformation).GetProperty(property.Name)) != null) {
-                    var value = info.GetValue(setInformation, null);
-
-                    if (value == null) {
-                        continue;
-                    }
-
-                    property.SetValue(res, value, null);
-                }
-            }
-        
             return res;
         }
     }

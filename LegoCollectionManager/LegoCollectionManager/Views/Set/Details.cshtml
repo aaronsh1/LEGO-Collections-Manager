@@ -24,35 +24,64 @@
         <p>Pieces: @Model.PieceCount</p>
 
         <h2>Description</h2>
-        <p>@Model.OneLiner</p>
-        <p>@Model.Description</p>
-
-        @for (int i = 0; i < Model.BulletPoints?.Length; i++)
-        {   
-            <p>@Model.BulletPoints[i]</p>
+        if (String.IsNullOrEmpty(Model.OneLiner) && String.IsNullOrEmpty(Model.Description) && (Model.BulletPoints == null || Model.BulletPoints.Length == 0))
+        {
+            <p>No Description Available</p>
         }
+        else
+        {
+            <p>@Model.OneLiner</p>
+            <p>@Model.Description</p>
 
+            @for (int i = 0; i < Model.BulletPoints?.Length; i++)
+            {   
+                <p>@Model.BulletPoints[i]</p>
+            }
+        }
+        
         <h2>Instructions</h2>
         //TODO: Display Instruction numbers
-        @for (int i = 0; i < Model.Instructions.Length; i++)
-        {        
-            <a href="@Model.Instructions[i].FileUrl" target="_blank">
-                <img src="@Model.Instructions[i].ImageUrl"/>
-            </a>
+        @if (Model.Instructions == null || Model.Instructions.Length == 0)
+        {
+            <p>No Instructions to display</p>
+        }
+        else
+        {
+            @for (int i = 0; i < Model.Instructions.Length; i++)
+            {
+                <a href="@Model.Instructions[i].FileUrl" target="_blank">
+                    <img src="@Model.Instructions[i].ImageUrl"/>
+                </a>
+            }
         }
 
         <h2>Images</h2>
         //TODO: Images carousel
-        @for (int i = 0; i < Model.Images.Length; i++)
-        {   
-            <img src="@Model.Images[i].Url"/>
+        @if (Model.Images == null || Model.Images.Length == 0)
+        {
+            <p>No Images to display</p>
+        }
+
+        else
+        {
+            @for (int i = 0; i < Model.Images.Length; i++)
+            {   
+                <img src="@Model.Images[i].Url"/>
+            }    
         }
 
         <h2>Additional Images</h2>
         //TODO: Images carousel
-        @for (int i = 0; i < Model.AdditionalImages.Length; i++)
-        {   
-            <img src="@Model.AdditionalImages[i].Url"/>
+        @if (Model.AdditionalImages == null || Model.AdditionalImages.Length == 0)
+        {
+            <p>No Additional Images</p>
+        }
+        else
+        {
+            @for (int i = 0; i < Model.AdditionalImages.Length; i++)
+            {   
+                <img src="@Model.AdditionalImages[i].Url"/>
+            }   
         }
     }
 </div>

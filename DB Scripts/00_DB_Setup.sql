@@ -1,13 +1,13 @@
 USE master;
 GO
-IF DB_ID (N'LegoDB') IS NOT NULL
-DROP DATABASE LegoDB;
+IF DB_ID (N'LEGOCollectionDB') IS NOT NULL
+DROP DATABASE LEGOCollectionDB;
 GO
 
-CREATE DATABASE LegoDB;
+CREATE DATABASE LEGOCollectionDB;
 GO
 
-USE LegoDB;
+USE LEGOCollectionDB;
 GO
 
 CREATE TABLE [PieceCategory] (
@@ -18,9 +18,26 @@ GO
 
 CREATE TABLE [User] (
   [UserId] int PRIMARY KEY IDENTITY(1, 1),
-  [Username] varchar(255)
+  [Username] varchar(255),
+  [Salt] varchar(255),
+  [Password] varchar(255)
 )
 GO
+
+CREATE TABLE [Avatar] (
+  [AvatarId] int PRIMARY KEY IDENTITY(1, 1),
+  [URL] varchar(255) NOT NULL
+)
+
+CREATE TABLE [UserAvatar] (
+  [UserAvatarId] int PRIMARY KEY IDENTITY(1, 1),
+  [User] int NOT NULL,
+  [Avatar] int NOT NULL,
+
+  FOREIGN KEY ([User]) REFERENCES [User]([UserId])
+  ON DELETE CASCADE,
+  FOREIGN KEY ([Avatar]) REFERENCES [Avatar]([AvatarId])
+)
 
 CREATE TABLE [Colour] (
   [ColourId] int PRIMARY KEY,

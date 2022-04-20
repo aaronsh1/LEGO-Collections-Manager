@@ -27,7 +27,12 @@ namespace LegoCollectionManager
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddDbContext<LegoCollectionDBContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddSession(options =>
+        {
+            options.IdleTimeout = TimeSpan.FromMinutes(30);
+        });
 
         services.AddControllersWithViews();
     }

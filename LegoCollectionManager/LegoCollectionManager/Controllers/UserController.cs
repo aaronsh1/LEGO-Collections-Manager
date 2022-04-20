@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using LegoCollectionManager.Models;
 using System.Linq;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace LegoCollectionManager.Controllers
 {
@@ -10,18 +12,71 @@ namespace LegoCollectionManager.Controllers
     {
         LegoCollectionDBContext _context = new LegoCollectionDBContext();
 
+        public IEnumerable<Set> getUserSets(int id)
+        {
+            List<Set> userSets = (from s in _context.Sets
+                                  join us in _context.UserSets on s.SetId equals us.UseSetId
+                                  where us.User == id
+                                  select s).ToList();
+            return userSets;
+        }
+
+        public IEnumerable<Piece> getUserPieces(int id)
+        {
+            List<Piece> userPieces = (from p in _context.Pieces
+                                      join up in _context.UserSparePieces on p.PieceId equals up.Piece
+                                      where up.User == id
+                                      select p).ToList();
+            return userPieces;
+        }
+
+        public IEnumerable<Avatar> getAvatarList()
+        {
+            List<Avatar> avatarList = (from a in _context.Avatars
+                                       select a).ToList();
+
+            return avatarList;
+        }
+
         // GET: UserController
         public ActionResult Index()
         {
-            return View(_context.Users);
+            return View();
         }
 
         // GET: UserController/Login
-        public RedirectToActionResult Login(string username)
+        public ActionResult Login(FormCollection form)
         {
+            ViewBag.IncorrectPassword = "";
             User userToReturn = (from u in _context.Users
-                                 where u.Username == username
+                                 where u.Username == form["username"]
                                  select u).ToList().FirstOrDefault();
+
+            string password = form["password"];
+            string saltFromDb = userToReturn.Salt;
+            byte[] salt = System.Text.Encoding.ASCII.GetBytes(saltFromDb);
+            string passwordFromDb = userToReturn.Password;
+
+
+
+            string hashedPassword = System.Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: password,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA256,
+                iterationCount: 100000,
+                numBytesRequested: 256 / 8));
+
+
+            if (passwordFromDb != hashedPassword)
+            {
+                ViewBag.IncorrectPassword = "Incorrect Username or Password. Please Try Again.";
+                return View("Index");
+            }
+
+            string SessionUserId = "_UserId";
+
+            HttpContext.Session.SetInt32(SessionUserId, userToReturn.UserId);
+
             return RedirectToAction("Details", new { id = userToReturn.UserId });
         }
 
@@ -31,23 +86,60 @@ namespace LegoCollectionManager.Controllers
             if (id == null)
                 return NotFound();
 
-            User userToReturn = new User();
-            userToReturn = _context.Users.Find(id);
+            ViewBag["UserSets"] = getUserSets((int) id);
+            ViewBag["UserSparePieces"] = getUserPieces((int)id);
+
+            User userToReturn = _context.Users.Find(id);
             return View(userToReturn);
         }
 
         // GET: UserController/Create
         public ActionResult Create()
         {
+            ViewBag.Avatars = getAvatarList();
             return View();
         }
 
         // POST: UserController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(User userToAdd)
+        public ActionResult Create(FormCollection form)
         {
+            string username = form["username"];
+            string password = form["password"];
+            string avatar = form["avatar"];
+
+            byte[] salt = new byte[128 / 8];
+
+            using (var rngCsp = new RNGCryptoServiceProvider())
+            {
+                rngCsp.GetNonZeroBytes(salt);
+            }
+
+            string hashedPassword = System.Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: password,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA256,
+                iterationCount: 100000,
+                numBytesRequested: 256 / 8));
+
+            User userToAdd = new User();
+            userToAdd.Username = username;
+            userToAdd.Salt = System.Convert.ToBase64String(salt);
+            userToAdd.Password = hashedPassword;
+
             _context.Users.Add(userToAdd);
+
+
+            UserAvatar forUser = new UserAvatar();
+            forUser.User = (from u in _context.Users
+                            where u.Username == username
+                            select u).ToList().FirstOrDefault().UserId;
+            forUser.Avatar = (from a in _context.Avatars
+                              where a.Url == avatar
+                              select a).ToList().FirstOrDefault().AvatarId;
+
+            _context.UserAvatars.Add(forUser);
             _context.SaveChanges();
 
             try

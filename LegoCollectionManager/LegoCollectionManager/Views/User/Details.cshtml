@@ -1,0 +1,84 @@
+﻿@model LegoCollectionManager.Models.User
+
+@{
+    Set SetHeaderItem = new Set();
+    Piece PieceHeaderItem = new Piece();
+}
+
+<h1>@Html.DisplayFor(model => model.Username)</h1>
+
+<div>
+    <h4>Sets</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => SetHeaderItem.SetName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => SetHeaderItem.PiecesAmount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => SetHeaderItem.SetCategoryNavigation)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (Set item in ViewBag.UserSets) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SetName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PiecesAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SetCategoryNavigation.SetCategoryId)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.SetId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.SetId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.SetId">Delete</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    <hr />
+    <h4>Pieces</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => PieceHeaderItem.PieceId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => PieceHeaderItem.PieceName)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (Piece item in ViewBag.UserSparePieces) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PieceId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PieceName)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.PieceId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.PieceId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.PieceId">Delete</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    <hr />
+</div>
+<div>
+    <a asp-action="Index">Logout</a>
+</div>

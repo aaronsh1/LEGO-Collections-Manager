@@ -30,6 +30,14 @@ namespace LegoCollectionManager.Controllers
             return userPieces;
         }
 
+        public IEnumerable<Avatar> getAvatarList()
+        {
+            List<Avatar> avatarList = (from a in _context.Avatars
+                                       select a).ToList();
+
+            return avatarList;
+        }
+
         // GET: UserController
         public ActionResult Index()
         {
@@ -88,6 +96,7 @@ namespace LegoCollectionManager.Controllers
         // GET: UserController/Create
         public ActionResult Create()
         {
+            ViewBag.Avatars = getAvatarList();
             return View();
         }
 
@@ -98,6 +107,7 @@ namespace LegoCollectionManager.Controllers
         {
             string username = form["username"];
             string password = form["password"];
+            string avatar = form["avatar"];
 
             byte[] salt = new byte[128 / 8];
 
@@ -118,8 +128,18 @@ namespace LegoCollectionManager.Controllers
             userToAdd.Salt = System.Convert.ToBase64String(salt);
             userToAdd.Password = hashedPassword;
 
-
             _context.Users.Add(userToAdd);
+
+
+            UserAvatar forUser = new UserAvatar();
+            forUser.User = (from u in _context.Users
+                            where u.Username == username
+                            select u).ToList().FirstOrDefault().UserId;
+            forUser.Avatar = (from a in _context.Avatars
+                              where a.Url == avatar
+                              select a).ToList().FirstOrDefault().AvatarId;
+
+            _context.UserAvatars.Add(forUser);
             _context.SaveChanges();
 
             try

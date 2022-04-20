@@ -63,8 +63,11 @@ namespace LegoCollectionManager.Controllers
             return View(_context.Sets);
         }
 
-        public ActionResult SetRecommendations(int? userId)
+        public ActionResult SetRecommendations()
         {
+            string SessionUserId = "_UserId";
+            int? userId = HttpContext.Session.GetInt32(SessionUserId);
+
             if (userId == null)
                 return NotFound();
 

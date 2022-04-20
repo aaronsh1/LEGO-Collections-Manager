@@ -1,0 +1,49 @@
+﻿@model IEnumerable<LegoCollectionManager.Models.SetPiece>
+
+@{
+    ViewData["Title"] = "AddPieces";
+    var SetId = ViewData["SetId"];
+    
+}
+
+<div style="display:inline-block"><p>Add Pieces For Set: </p><p>@ViewBag.SetId</p></div>
+
+<div>
+    <div class="set-piece-list">
+    <hr />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Piece)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Amount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Colour)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Piece)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Colour)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <hr/>
+    @Html.Partial("AddPiece", new LegoCollectionManager.Models.SetPiece());
+    @Html.ActionLink($"Details/{SetId}", "Done");
+</div>

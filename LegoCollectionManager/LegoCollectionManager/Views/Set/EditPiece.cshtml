@@ -1,0 +1,42 @@
+﻿@model LegoCollectionManager.Models.SetPiece
+
+<h4>SetPiece</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditPiece">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SetPieceId" />
+            <div class="form-group">
+                <label asp-for="Piece" class="control-label"></label>
+                <select asp-for="Piece" class="form-control" asp-items="ViewBag.Pieces"/>
+                <span asp-validation-for="Piece" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SetId" class="control-label"></label>
+                <textarea asp-for="SetId" class="form-control" asp-items="ViewBag.SetId" disabled="disabled"></textarea>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Colour" class="control-label"></label>
+                <select asp-for="Colour" class="form-control" asp-items="ViewBag.Colours"></select>
+                <span asp-validation-for="Colour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

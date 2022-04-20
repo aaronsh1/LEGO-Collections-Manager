@@ -1,0 +1,59 @@
+﻿@model IEnumerable<LegoCollectionManager.Models.SetPiece>
+
+@{
+    ViewData["Title"] = "EditPieces";
+}
+
+<h1>EditPieces</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Piece)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ColourNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Set)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SetPieceNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Piece)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ColourNavigation.ColourId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Set.SetId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SetPieceNavigation.PieceId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SetPieceId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SetPieceId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SetPieceId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

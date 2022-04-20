@@ -41,7 +41,7 @@ namespace LegoCollectionManager.Controllers
         // GET: UserController
         public ActionResult Index()
         {
-            return View(_context.Users);
+            return View();
         }
 
         // GET: UserController/Login

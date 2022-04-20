@@ -21,38 +21,73 @@ namespace LegoDBExtractor
             var validInventories = getValidInventories();
 
             //Get sets
-            var sets = getSets(validInventories);
+            //var sets = getSets(validInventories);
 
             //Get set categories
-            var setCategories = getSetCategories();
+            //var setCategories = getSetCategories();
 
             //Get part categories
-            var partCategories = getPartCategories();
+            //var partCategories = getPartCategories();
 
             //Get colors
-            var colors = getColors();
+            //var colors = getColors();
 
             //Get set_parts list
             var setPartsRes = getSetParts(validInventories);
             var setParts = setPartsRes.SetsFormatted;
 
             //Get parts list
-            var parts = getParts(setPartsRes.UniquePartNums);
+            //var parts = getParts(setPartsRes.UniquePartNums);
+
+
+            //6032
+            //60321
+            //75288
+
+            List<SearchPart> searchParts = new List<SearchPart>();
+
+            foreach(SetPart sp in setPartsRes.SetParts)
+            {
+                if (sp.Id != 6032)
+                {
+                    continue;
+                }
+
+                var item = new SearchPart();
+                item.Id = sp.PartId;
+                item.Color = sp.Color;
+                item.Count = sp.Count;
+
+                int index = searchParts.FindIndex((s) => (s.Id == sp.PartId && s.Color == sp.Color));
+
+                if (index == -1)
+                {
+                    searchParts.Add(item);
+                } else
+                {
+                    searchParts[index].Count += item.Count;
+                }
+            }
+
+            Console.WriteLine(String.Join("\n ", searchParts));
+
+
+
 
             //Delete file to start fresh
-            File.Delete(outputSqlFileName);
+            //File.Delete(outputSqlFileName);
 
             //Write sql to script
-            writeToFile(outputSqlFileName, 2, "INSERT INTO dbo.SetCategory (SetCategoryId, SetCategoryName)", setCategories);
-            writeToFile(outputSqlFileName, 2, "INSERT INTO dbo.PieceCategory (PieceCategoryId, PieceCategoryName)", partCategories);
-            writeToFile(outputSqlFileName, 2, "INSERT INTO dbo.Colour (ColourId, ColourName)", colors);
-            writeToFile(outputSqlFileName, 4, "INSERT INTO dbo.[Set] (SetId, SetName, SetCategory, PiecesAmount)", sets);
-            writeToFile(outputSqlFileName, 3, "INSERT INTO dbo.Piece (PieceId, PieceName, PieceCategory)", parts);
+            //writeToFile(outputSqlFileName, 2, "INSERT INTO dbo.SetCategory (SetCategoryId, SetCategoryName)", setCategories);
+            //writeToFile(outputSqlFileName, 2, "INSERT INTO dbo.PieceCategory (PieceCategoryId, PieceCategoryName)", partCategories);
+            //writeToFile(outputSqlFileName, 2, "INSERT INTO dbo.Colour (ColourId, ColourName)", colors);
+            //writeToFile(outputSqlFileName, 4, "INSERT INTO dbo.[Set] (SetId, SetName, SetCategory, PiecesAmount)", sets);
+            //writeToFile(outputSqlFileName, 3, "INSERT INTO dbo.Piece (PieceId, PieceName, PieceCategory)", parts);
 
             //Write set parts to csv file
-            File.Delete(outputCsvFileName);
-            File.WriteAllText(outputCsvFileName, "SetPieceId,Piece,SetId,Amount,Colour\r\n");
-            File.AppendAllLines(outputCsvFileName, setParts);
+            //File.Delete(outputCsvFileName);
+            //File.WriteAllText(outputCsvFileName, "SetPieceId,Piece,SetId,Amount,Colour\r\n");
+            //File.AppendAllLines(outputCsvFileName, setParts);
 
         }
 
@@ -211,6 +246,7 @@ namespace LegoDBExtractor
             Console.WriteLine("Raw Set_Parts: " + inventoryPartsLines.Length);
 
             List<string> output = new List<string>();
+            List <SetPart> setParts = new List<SetPart>();
             HashSet<string> outputParts = new HashSet<string>();
 
             string prevInvId = null;
@@ -265,11 +301,18 @@ namespace LegoDBExtractor
                 if (parts[1] == prevBlockNum && parts[2] == prevColorId)
                 {
                     output.RemoveAt(output.Count - 1);
+                    setParts.RemoveAt(setParts.Count - 1);
                     blockCount += prevBlockCount;
                 }
 
-                //setNum,partNum,color,amount
+                //partNum,setNum,amount,color
                 string lineOutput = $"0,\"{parts[1]}\",{setNum},{blockCount},{parts[2]}";
+
+                SetPart sp = new SetPart();
+                sp.Id = setNum;
+                sp.PartId = parts[1];
+                sp.Color = parts[2];
+                sp.Count = blockCount;
 
                 prevBlockNum = parts[1];
                 prevColorId = parts[2];
@@ -277,11 +320,12 @@ namespace LegoDBExtractor
 
                 output.Add(lineOutput);
                 outputParts.Add(parts[1]);
+                setParts.Add(sp);
             }
 
             Console.WriteLine("Filtered Set_Parts: " + output.Count);
 
-            return new SetItemsResult(output, outputParts);
+            return new SetItemsResult(output, outputParts, setParts);
         }
 
 

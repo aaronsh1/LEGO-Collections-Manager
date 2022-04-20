@@ -9,16 +9,14 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-controller="User" asp-action="Login" method="get">
+        <form asp-controller="User" asp-action="Login" method="gett">
             <div class="form-group">
                 <label asp-for=Username class="control-label" value="Enter Username">Username</label>
-                <input asp-for=Username />
-                <span asp-validation-for=Username class="text-danger"></span>
+                <input asp-for=Username class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for=Password class="control-label" value="Enter Password">Password</label>
-                <input asp-for=Password />
-                <span asp-validation-for=Password class="text-danger"></span>
+                <input asp-for=Password class="form-control" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Login" class="btn btn-primary" />

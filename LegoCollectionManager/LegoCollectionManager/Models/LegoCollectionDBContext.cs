@@ -113,15 +113,7 @@ namespace LegoCollectionManager.Models
             {
                 entity.ToTable("Set");
 
-                entity.Property(e => e.Image)
-                    .HasMaxLength(1)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.SetName)
-                    .HasMaxLength(1)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.ShopLink)
                     .HasMaxLength(1)
                     .IsUnicode(false);
 

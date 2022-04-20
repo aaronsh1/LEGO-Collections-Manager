@@ -18,8 +18,6 @@ namespace LegoCollectionManager.Models
         public string SetName { get; set; }
         public int? PiecesAmount { get; set; }
         public int? SetCategory { get; set; }
-        public string ShopLink { get; set; }
-        public string Image { get; set; }
 
         public virtual SetCategory SetCategoryNavigation { get; set; }
         public virtual ICollection<SetPieceCategory> SetPieceCategories { get; set; }

@@ -35,9 +35,9 @@ namespace LegoCollectionManager.Controllers
       return View();
     }
 
-    public ViewResult Search(string str)
+    public ViewResult Search(string value)
     {
-      ViewData["dictionary"] = dictionary[str];
+      ViewData["dictionary"] = dictionary[value];
       return View();
     }
   }

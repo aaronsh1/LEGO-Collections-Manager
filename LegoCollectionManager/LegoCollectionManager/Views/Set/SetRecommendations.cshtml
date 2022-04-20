@@ -18,6 +18,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.PiecesAmount)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SetCategoryNavigation)
+            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -28,6 +32,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PiecesAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SetCategoryNavigation.SetCategoryId)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.SetId">Edit</a> |

@@ -20,7 +20,7 @@ namespace LegoCollectionManager.Controllers
             Console.WriteLine("Hello world from Search");
 
             //60321, 6032, 75157
-            var setIds = new int[]{ 60321 };
+            var setIds = new int[]{ 75159 };
 
             SetInformationUtil util = new SetInformationUtil();
             Dictionary<string, int> searchPieces = new Dictionary<string, int>();
@@ -60,23 +60,25 @@ namespace LegoCollectionManager.Controllers
 
             //Get all of the sets where the piece count is above the threshold
             //We can exclude all sets where we do not have enough pieces to at least give the possibility of a 50% match.
-            List<Set> searchableSets = _context.Sets.Where(s => s.PiecesAmount <= searchThreshold && s.PiecesAmount > 0).OrderBy(s => s.PiecesAmount).ToList();
-
+            List<Set> searchableSets = _context.Sets.Where(s => s.PiecesAmount <= searchThreshold && s.PiecesAmount > 50).Include(s => s.SetPieces).OrderBy(s => s.PiecesAmount).ToList();
 
             //We loop through our Searchable Sets and compare the pieces to determin a percentage match
             foreach (var set in searchableSets)
             {
-                Console.WriteLine("SEARCHING SET: " + set.SetName);
+                //Console.WriteLine("SEARCHING SET: " + set.SetName);
 
                 int unMatchedCount = 0;
                 List<SetPiece> missingPieces = new List<SetPiece>();
                 bool failed = false;
                 List<string> piecesChecked = new List<string>();
+                double matchPercentage = 0;
 
-                var setPieces = _context.SetPieces.Where((sp) => sp.SetId == set.SetId);
+                var setPieces = set.SetPieces;
 
                 foreach(var setPiece in setPieces)
                 {
+                    
+
                     string key = $"{setPiece.Piece}#{setPiece.Colour}";
 
                     //The piece is completely missing
@@ -107,9 +109,11 @@ namespace LegoCollectionManager.Controllers
                         missingPieces.Add(temp);
                     }
 
+                    matchPercentage = ((set.PiecesAmount - unMatchedCount) ?? 0) / (double)(set.PiecesAmount ?? 1 /* Avoid division by 0 */) * 100.0;
+
                     //Check if it is still possible to reach 50% match
                     //If not, then we can exit early since this set is already a lost cause
-                    if (searchThreshold >= set.PiecesAmount - unMatchedCount)
+                    if (matchPercentage < 50)
                     {
                         failed = true;
                         break;
@@ -128,15 +132,10 @@ namespace LegoCollectionManager.Controllers
                 var searchRes = new SearchResultDTO();
                 searchRes.setId = set.SetId;
                 searchRes.setDTO = SetInformationDTO.GetDTO(set, util.GetSetInformation(set.SetId));
-                searchRes.matchPercentage = ((set.PiecesAmount - unMatchedCount) ?? 0) / (double)(set.PiecesAmount ?? 1 /* Avoid division by 0 */) * 100.0;
+                searchRes.matchPercentage = matchPercentage;
                 searchRes.missingPieces = missingPieces;
 
-                Console.WriteLine($"Match found: {set.SetName} [{set.SetId}] ({searchRes.matchPercentage}) unmatch: {unMatchedCount} setPieceAmount: {set.PiecesAmount}");
-
-                foreach(var m in piecesChecked)
-                {
-                    Console.WriteLine($"{m}");
-                }
+                Console.WriteLine($"Match found: {set.SetName} [{set.SetId}] ({(int)searchRes.matchPercentage}) unmatch: {unMatchedCount} setPieceAmount: {set.PiecesAmount}");
 
                 searchResults.Add(searchRes);
 
@@ -147,6 +146,8 @@ namespace LegoCollectionManager.Controllers
                 }
             }
 
+            searchResults.Sort((a, b) => Math.Sign(b.matchPercentage - a.matchPercentage));
+
             return View(searchResults);
         }
 
@@ -155,7 +156,7 @@ namespace LegoCollectionManager.Controllers
             //60321, 6032, 75157
             List<SetInformationDTO> DTOs = new List<SetInformationDTO>();
 
-            DTOs.Add(getSetInformation(60321));
+            DTOs.Add(getSetInformation(75159));
             DTOs.Add(getSetInformation(6032));
             DTOs.Add(getSetInformation(75288));
 

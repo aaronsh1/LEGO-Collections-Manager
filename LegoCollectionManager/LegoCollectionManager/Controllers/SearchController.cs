@@ -20,7 +20,7 @@ namespace LegoCollectionManager.Controllers
             Console.WriteLine("Hello world from Search");
 
             //60321, 6032, 75157
-            var setIds = new int[]{ 6032 };
+            var setIds = new int[]{ 60321 };
 
             SetInformationUtil util = new SetInformationUtil();
             Dictionary<string, int> searchPieces = new Dictionary<string, int>();
@@ -53,20 +53,20 @@ namespace LegoCollectionManager.Controllers
                 }
             }
 
-            //Calculate the piece threshold (1.25 x searchPieceCount)
-            //The amount needed for our search pieces to match (at best) 80% of the set
-            searchThreshold = (int)(1.25 * searchPieceCount);
+            //Calculate the piece threshold (2 x searchPieceCount)
+            //The amount needed for our search pieces to match (at best) 50% of the set
+            searchThreshold = (int)(2 * searchPieceCount);
 
 
             //Get all of the sets where the piece count is above the threshold
-            //We can exclude all sets where we do not have enough pieces to at least give the possibility of a 80% match.
-            List<Set> searchableSets = _context.Sets.Where(s => s.PiecesAmount > searchThreshold).OrderBy(s => s.PiecesAmount).ToList();
+            //We can exclude all sets where we do not have enough pieces to at least give the possibility of a 50% match.
+            List<Set> searchableSets = _context.Sets.Where(s => s.PiecesAmount <= searchThreshold && s.PiecesAmount > 0).OrderBy(s => s.PiecesAmount).ToList();
 
 
             //We loop through our Searchable Sets and compare the pieces to determin a percentage match
             foreach (var set in searchableSets)
             {
-                //Console.WriteLine("SEARCHING SET: " + set.SetName);
+                Console.WriteLine("SEARCHING SET: " + set.SetName);
 
                 int unMatchedCount = 0;
                 List<SetPiece> missingPieces = new List<SetPiece>();
@@ -107,7 +107,7 @@ namespace LegoCollectionManager.Controllers
                         missingPieces.Add(temp);
                     }
 
-                    //Check if it is still possible to reach 80% match
+                    //Check if it is still possible to reach 50% match
                     //If not, then we can exit early since this set is already a lost cause
                     if (searchThreshold >= set.PiecesAmount - unMatchedCount)
                     {
@@ -141,7 +141,7 @@ namespace LegoCollectionManager.Controllers
                 searchResults.Add(searchRes);
 
                 //Check if we have enough search results
-                if (searchResults.Count >= 1)
+                if (searchResults.Count >= 50)
                 {
                     break;
                 }

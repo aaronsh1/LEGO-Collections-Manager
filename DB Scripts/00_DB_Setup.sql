@@ -10,12 +10,47 @@ GO
 USE LegoDB;
 GO
 
+CREATE TABLE [PieceCategory] (
+  [PieceCategoryId] int PRIMARY KEY,
+  [PieceCategoryName] varchar(255)
+)
+GO
+
+CREATE TABLE [User] (
+  [UserId] int PRIMARY KEY IDENTITY(1, 1),
+  [Username] varchar(255)
+)
+GO
+
+CREATE TABLE [Colour] (
+  [ColourId] int PRIMARY KEY,
+  [ColourName] varchar(255)
+)
+GO
+
 CREATE TABLE [Piece] (
   [PieceId] varchar(50) PRIMARY KEY,
   [PieceName] varchar(255),
   [PieceCategory] int,
 
-  ADD FOREIGN KEY ([PieceCategory]) REFERENCES [PieceCategory] ([PieceCategoryId])
+   FOREIGN KEY ([PieceCategory]) REFERENCES [PieceCategory] ([PieceCategoryId])
+  ON DELETE CASCADE
+)
+GO
+
+CREATE TABLE [SetCategory] (
+  [SetCategoryId] int PRIMARY KEY,
+  [SetCategoryName] varchar(255)
+)
+GO
+
+CREATE TABLE [Set] (
+  [SetId] int PRIMARY KEY,
+  [SetName] varchar(255),
+  [PiecesAmount] int,
+  [SetCategory] int,
+
+   FOREIGN KEY ([SetCategory]) REFERENCES [SetCategory] ([SetCategoryId])
   ON DELETE CASCADE
 )
 GO
@@ -27,42 +62,15 @@ CREATE TABLE [SetPiece] (
   [Amount] int,
   [Colour] int,
 
-  ADD FOREIGN KEY ([Piece]) REFERENCES [Piece] ([PieceId])
+   FOREIGN KEY ([Piece]) REFERENCES [Piece] ([PieceId])
   ON DELETE CASCADE,
-  ADD FOREIGN KEY ([SetId]) REFERENCES [Set] ([SetId])
+   FOREIGN KEY ([SetId]) REFERENCES [Set] ([SetId])
   ON DELETE CASCADE,
-  ADD FOREIGN KEY ([Colour]) REFERENCES [Colour] ([ColourId])
+   FOREIGN KEY ([Colour]) REFERENCES [Colour] ([ColourId])
 )
 GO
 
-CREATE TABLE [PieceCategory] (
-  [PieceCategoryId] int PRIMARY KEY,
-  [PieceCategoryName] varchar(255)
-)
-GO
 
-CREATE TABLE [Set] (
-  [SetId] int PRIMARY KEY,
-  [SetName] varchar(255),
-  [PiecesAmount] int,
-  [SetCategory] int,
-
-  ADD FOREIGN KEY ([SetCategory]) REFERENCES [SetCategory] ([SetCategoryId])
-  ON DELETE CASCADE
-)
-GO
-
-CREATE TABLE [SetCategory] (
-  [SetCategoryId] int PRIMARY KEY,
-  [SetCategoryName] varchar(255)
-)
-GO
-
-CREATE TABLE [User] (
-  [UserId] int PRIMARY KEY IDENTITY(1, 1),
-  [Username] varchar(255)
-)
-GO
 
 CREATE TABLE [UserSparePieces] (
   [User] int,
@@ -70,11 +78,11 @@ CREATE TABLE [UserSparePieces] (
   [Amount] int,
   [Colour] int,
 
-  ADD FOREIGN KEY ([User]) REFERENCES [User] ([UserId])
+   FOREIGN KEY ([User]) REFERENCES [User] ([UserId])
   ON DELETE CASCADE,
-  ADD FOREIGN KEY ([Piece]) REFERENCES [Piece] ([PieceId])
+   FOREIGN KEY ([Piece]) REFERENCES [Piece] ([PieceId])
   ON DELETE CASCADE,
-  ADD FOREIGN KEY ([Colour]) REFERENCES [Colour] ([ColourId])
+   FOREIGN KEY ([Colour]) REFERENCES [Colour] ([ColourId])
 )
 GO
 
@@ -83,18 +91,13 @@ CREATE TABLE [UserSet] (
   [User] int,
   [Set] int,
 
-  ADD FOREIGN KEY ([User]) REFERENCES [User] ([UserId])
+   FOREIGN KEY ([User]) REFERENCES [User] ([UserId])
   ON DELETE CASCADE,
-  ADD FOREIGN KEY ([Set]) REFERENCES [Set] ([SetId])
+   FOREIGN KEY ([Set]) REFERENCES [Set] ([SetId])
   ON DELETE CASCADE
 )
 GO
 
-CREATE TABLE [Colour] (
-  [ColourId] int PRIMARY KEY,
-  [ColourName] varchar(255)
-)
-GO
 
 CREATE TABLE [MissingPiece] (
   [MissingPieceId] int PRIMARY KEY IDENTITY(1, 1),
@@ -103,11 +106,11 @@ CREATE TABLE [MissingPiece] (
   [Amount] int,
   [Colour] int,
 
-  ADD FOREIGN KEY ([UserSet]) REFERENCES [UserSet] ([UseSetId])
+   FOREIGN KEY ([UserSet]) REFERENCES [UserSet] ([UseSetId])
   ON DELETE CASCADE,
-  ADD FOREIGN KEY ([Piece]) REFERENCES [Piece] ([PieceId])
+   FOREIGN KEY ([Piece]) REFERENCES [Piece] ([PieceId])
   ON DELETE CASCADE,
-  ADD FOREIGN KEY ([Colour]) REFERENCES [Colour] ([ColourId])
+   FOREIGN KEY ([Colour]) REFERENCES [Colour] ([ColourId])
 )
 GO
 
@@ -116,9 +119,9 @@ CREATE TABLE [SetPieceCategory] (
   [PieceCategory] int,
   [Set] int,
 
-  ADD FOREIGN KEY ([PieceCategory]) REFERENCES [PieceCategory] ([PieceCategoryId])
+   FOREIGN KEY ([PieceCategory]) REFERENCES [PieceCategory] ([PieceCategoryId])
   ON DELETE CASCADE,
-  ADD FOREIGN KEY ([Set]) REFERENCES [Set] ([SetId])
+   FOREIGN KEY ([Set]) REFERENCES [Set] ([SetId])
   ON DELETE CASCADE
 )
 GO

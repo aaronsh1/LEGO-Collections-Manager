@@ -3,7 +3,19 @@
 @{
   ViewData["Title"] = "Index";
   var dictionary = this.ViewBag.dictionary as List<Piece>;
+  var category = this.ViewBag.displayData as List<string>;
 }
+
+
+<form action="/PieceCategory/Search" method="get">
+  <select name="value">
+    @foreach (var diction in category)
+    {
+      <option value="@diction">@diction</option>
+    }
+  </select>
+  <p><input type="submit" value="Submit" /> </p>
+</form>
 
 <table class="table">
 

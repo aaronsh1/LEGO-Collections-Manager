@@ -2,49 +2,43 @@
 
 @{
   ViewData["Title"] = "Index";
-  var dictionary = this.ViewBag.dictionary as Dictionary<string, List<Piece>>;
+  var dictionary = this.ViewBag.dictionary as List<Piece>;
+  var category = this.ViewBag.displayData as List<string>;
 }
 
 <form action="/PieceCategory/Search" method="get">
   <select name="value">
-    @foreach (var diction in dictionary)
+    @foreach (var diction in category)
     {
-      <option value="@diction.Key">@diction.Key</option>
+      <option value="@diction">@diction</option>
     }
   </select>
   <p><input type="submit" value="Submit" /> </p>
 </form>
 
 
-
-
-@foreach (var diction in dictionary)
-{
-  <h1>@diction.Key</h1>
-  <table class="table">
-
-    <thead>
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        @Html.DisplayNameFor(model => model.PieceName)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.PieceCategory)
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in dictionary)
+    {
       <tr>
-        <th>
-          @Html.DisplayNameFor(model => model.PieceName)
-        </th>
-        <th>
-          @Html.DisplayNameFor(model => model.PieceCategory)
-        </th>
+        <td>
+          @Html.DisplayFor(modelItem => item.PieceName)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.PieceCategory)
+        </td>
       </tr>
-    </thead>
-    <tbody>
-      @foreach (var item in diction.Value)
-      {
-        <tr>
-          <td>
-            @Html.DisplayFor(modelItem => item.PieceName)
-          </td>
-          <td>
-            @Html.DisplayFor(modelItem => item.PieceCategory)
-          </td>
-        </tr>
-      }
-    </tbody>
-  </table>
-}
+    }
+  </tbody>
+</table>

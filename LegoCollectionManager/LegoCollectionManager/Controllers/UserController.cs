@@ -331,5 +331,37 @@ namespace LegoCollectionManager.Controllers
 
             return View(recomSets);
         }
+
+        public ActionResult UserSets()
+        {
+            int userId = (int)HttpContext.Session.GetInt32("_User");
+            List<Set> sets = (from us in _context.UserSets
+                              join s in _context.Sets on us.Set equals s.SetId
+                              where us.User == userId
+                              select s).ToList() ?? new List<Set>();
+
+            return View(sets);
+        }
+
+        public ActionResult AddUserSet()
+        {
+            return View(_context.Sets.ToList());
+        }
+
+        [HttpPost]
+        public ActionResult AddUserSet(Set setToAdd)
+        {
+            int userId = (int)HttpContext.Session.GetInt32("_User");
+            int setId = setToAdd.SetId;
+
+            UserSet userSet = new UserSet();
+            userSet.User = userId;
+            userSet.Set = setId;
+
+            _context.UserSets.Add(userSet);
+            _context.SaveChanges();
+
+            return RedirectToAction("UserSets");
+        }
     }
 }

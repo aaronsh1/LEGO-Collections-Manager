@@ -1,0 +1,47 @@
+﻿@model IEnumerable<LegoCollectionManager.Models.Set>
+
+@{
+    ViewData["Title"] = "UserSets";
+}
+
+<h1>UserSets</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SetName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PiecesAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SetCategoryNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SetName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PiecesAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SetCategoryNavigation.SetCategoryId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SetId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SetId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SetId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

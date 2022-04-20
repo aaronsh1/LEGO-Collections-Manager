@@ -1,0 +1,33 @@
+﻿@model IEnumerable<LegoCollectionManager.Models.Piece>
+
+@{
+  ViewData["Title"] = "Index";
+  var dictionary = this.ViewBag.dictionary as List<Piece>;
+}
+
+<table class="table">
+
+  <thead>
+    <tr>
+      <th>
+        @Html.DisplayNameFor(model => model.PieceName)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.PieceCategory)
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in dictionary)
+    {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.PieceName)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.PieceCategory)
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

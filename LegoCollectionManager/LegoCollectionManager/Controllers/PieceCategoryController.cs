@@ -31,13 +31,17 @@ namespace LegoCollectionManager.Controllers
 
     public IActionResult Index()
     {
-      ViewData["dictionary"] = dictionary;
+      ViewData["dictionary"] = dictionary[_context.PieceCategories.Select(x => x.PieceCategoryName).First()];
+      ViewData["displayData"] = _context.PieceCategories.Select(x => x.PieceCategoryName).ToList();
+      ViewData["category"] = _context.PieceCategories.Select(x => x.PieceCategoryName).First();
       return View();
     }
 
     public ViewResult Search(string value)
     {
       ViewData["dictionary"] = dictionary[value];
+      ViewData["displayData"] = _context.PieceCategories.Select(x => x.PieceCategoryName).ToList();
+      ViewData["category"] = value;
       return View();
     }
   }

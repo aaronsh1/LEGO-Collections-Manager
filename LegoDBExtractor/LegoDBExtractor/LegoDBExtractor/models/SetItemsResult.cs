@@ -11,13 +11,10 @@ namespace LegoDBExtractor
         public List<string> SetsFormatted { get; set; }
         public HashSet<string> UniquePartNums { get; set; }
 
-        public List<SetPart> SetParts { get; set; }
-
-        public SetItemsResult(List<string> setsFormatted, HashSet<string> uniquePartNums, List<SetPart> setParts)
+        public SetItemsResult(List<string> setsFormatted, HashSet<string> uniquePartNums)
         {
             SetsFormatted = setsFormatted;
             UniquePartNums = uniquePartNums;
-            SetParts = setParts;
         }
     }
 }

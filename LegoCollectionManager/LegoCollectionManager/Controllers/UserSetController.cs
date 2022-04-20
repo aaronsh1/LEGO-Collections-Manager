@@ -47,31 +47,24 @@ namespace LegoCollectionManager.Controllers
             if (id == null)
                 return NotFound();
 
-            ViewBag.UserId = id;
             ViewBag.SetNumbers = getSetNumbers();
-            System.Console.WriteLine(ViewBag.UserId.toString());
-            return View();
-        }
 
-        // GET: UserSet/AddSet
-        public RedirectToActionResult AddSet(string Set)
-        {
-            
-            System.Console.WriteLine(Set);
-            System.Console.WriteLine(ViewBag.UserId.toString());
-
-            return RedirectToAction("Index");
+            User userToReturn = _context.Users.Find(id);
+            return View(userToReturn);
         }
 
         // POST: UserSet/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(UserSet userSetToAdd)
+        public ActionResult Create(User user, IFormCollection form)
         {
+            UserSet userSetToAdd = new UserSet();
+            userSetToAdd.User = user.UserId;
+            userSetToAdd.Set = Int32.Parse(form["Set"]);
             _context.UserSets.Add(userSetToAdd);
             _context.SaveChanges();
             
-            return View();
+            return RedirectToAction("Details", "User", new { id = ViewBag.UserId });
         }
 
         // GET: UserSet/Edit/5

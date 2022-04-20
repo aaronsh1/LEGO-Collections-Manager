@@ -1,14 +1,29 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Web;
 using LegoCollectionManager.Models;
+using LegoCollectionManager.SetInformation;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 
 namespace LegoCollectionManager.Controllers
 {
     public class UserSetController : Controller
     {
         LegoCollectionDBContext _context = new LegoCollectionDBContext();
+
+        public IEnumerable<SelectListItem> getSetNumbers()
+        {
+            IEnumerable<SelectListItem> setNumbers = from s in _context.Sets
+                                                     select new SelectListItem
+                                                     {
+                                                        Text = $"{s.SetName} ({s.SetId.ToString()})",
+                                                        Value = s.SetId.ToString()
+                                                      };
+            return setNumbers;
+        }
 
         // GET: UserSet
         public ActionResult Index()
@@ -27,27 +42,40 @@ namespace LegoCollectionManager.Controllers
         }
 
         // GET: UserSet/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            return View();
+            if (id == null)
+                return NotFound();
+
+            ViewBag.SetNumbers = getSetNumbers();
+            ViewBag.UserId = id;
+
+            UserSet userSetToReturn = new UserSet();
+            return View(userSetToReturn);
+        }
+
+        // GET: UserSet/AddSet
+        public RedirectToActionResult AddSet(string Set)
+        {
+            
+            System.Console.WriteLine(Set);
+            System.Console.WriteLine(ViewBag.UserId.toString());
+
+            return RedirectToAction("Index");
         }
 
         // POST: UserSet/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(UserSet userSetToAdd)
+        public ActionResult Create(IFormCollection form)
         {
+            UserSet userSetToAdd = new UserSet();
+            userSetToAdd.User = ViewBag.UserId;
+            userSetToAdd.Set = Int32.Parse(form["Set"]);
             _context.UserSets.Add(userSetToAdd);
             _context.SaveChanges();
-
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            
+            return RedirectToAction("Details", "User", new { id = ViewBag.UserId });
         }
 
         // GET: UserSet/Edit/5

@@ -78,8 +78,11 @@ namespace LegoDBExtractor
                 int id = Int32.Parse(parts[0]);
 
                 string setId = parts[2];
+                string subVersion = setId.Substring(setId.IndexOf("-") + 1);
                 setId = setId.Substring(0, setId.IndexOf("-"));
+                
                 int setIdInt = 0;
+                int subVersionInt = 0;
 
                 //We only want the sets where the id is valid (does not overflow, and only contains numbers)
                 if (!Int32.TryParse(setId, out setIdInt))
@@ -87,14 +90,26 @@ namespace LegoDBExtractor
                     continue;
                 }
 
-                //We do not want duplicates
-                if (output.Any(item => item.SetId == setIdInt))
+                if (!Int32.TryParse(subVersion, out subVersionInt))
                 {
                     continue;
                 }
 
-                //Set id
-                output.Add(new InventoryItem(id, setIdInt));
+                var item = output.Find(x => x.SetId == setIdInt);
+
+                if (item != null)
+                {
+                    if (subVersionInt < item.SubVersion)
+                    {
+                        item.SubVersion = subVersionInt;
+                        item.Id = id;
+                    }
+
+                } else
+                {
+                    output.Add(new InventoryItem(id, setIdInt, subVersionInt));
+                }
+                
             }
 
             return output;
@@ -233,7 +248,7 @@ namespace LegoDBExtractor
 
                 //If the last inventory id is same as now, we dont have to search to validate
                 if (parts[0] == prevInvId)
-                {
+                {   
                     setNum = prevSetNum;
 
                 } else // We need to search to find the inventory id
@@ -241,12 +256,11 @@ namespace LegoDBExtractor
 
                     foreach (InventoryItem item in validInventories)
                     {
-                        if (item.Id.ToString() != parts[0])
+                        if (item.Id.ToString() == parts[0])
                         {
-                            continue;
+                            setNum = item.SetId;                   
+                            break;
                         }
-
-                        setNum = item.SetId;
                     }
                 }
 
@@ -256,6 +270,7 @@ namespace LegoDBExtractor
                 //We did not find the inventory, so its not valid, and we can skip
                 if (setNum == -1)
                 {
+                    //Console.WriteLine("Invalid Set Id: " + parts[0]);
                     continue;
                 }
 
@@ -269,7 +284,7 @@ namespace LegoDBExtractor
                 }
 
                 //setNum,partNum,color,amount
-                string lineOutput = $"0,\"{parts[1]}\",{setNum},{blockCount},{parts[2]}";
+                string lineOutput = $",{parts[1]},{setNum},{blockCount},{parts[2]}";
 
                 prevBlockNum = parts[1];
                 prevColorId = parts[2];

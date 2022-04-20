@@ -128,7 +128,7 @@ namespace LegoCollectionManager.Controllers
                 var searchRes = new SearchResultDTO();
                 searchRes.setId = set.SetId;
                 searchRes.setDTO = SetInformationDTO.GetDTO(set, util.GetSetInformation(set.SetId));
-                searchRes.matchPercentage = ((double)(set.PiecesAmount??0 - unMatchedCount) * 100.0) / (double)(set.PiecesAmount??0);
+                searchRes.matchPercentage = ((set.PiecesAmount - unMatchedCount) ?? 0) / (double)(set.PiecesAmount ?? 1 /* Avoid division by 0 */) * 100.0;
                 searchRes.missingPieces = missingPieces;
 
                 Console.WriteLine($"Match found: {set.SetName} [{set.SetId}] ({searchRes.matchPercentage}) unmatch: {unMatchedCount} setPieceAmount: {set.PiecesAmount}");

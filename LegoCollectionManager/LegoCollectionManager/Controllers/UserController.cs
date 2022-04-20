@@ -50,6 +50,9 @@ namespace LegoCollectionManager.Controllers
         public ActionResult Index()
         {
             ViewData["IncorrectPassword"] = "";
+            string active = HttpContext.Session.GetString("_IsActive") ?? "NotActive";
+            if(active != "NotActive")
+                return RedirectToAction("UserSets");
 
             return View();
         }
@@ -93,6 +96,7 @@ namespace LegoCollectionManager.Controllers
             string SessionUserId = "_UserId";
 
             HttpContext.Session.SetInt32(SessionUserId, userToReturn.UserId);
+            HttpContext.Session.SetString("_IsActive", "Active");
 
             ViewBag.UserAvatar = (from ua in _context.UserAvatars
                                   join a in _context.Avatars on ua.Avatar equals a.AvatarId
@@ -102,20 +106,7 @@ namespace LegoCollectionManager.Controllers
                                       link = a.Url
                                   }).FirstOrDefault().link;
 
-            return RedirectToAction("Details", new { id = userToReturn.UserId });
-        }
-
-        // GET: UserController/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-                return NotFound();
-
-            ViewBag.UserSets = getUserSets((int) id);
-            ViewBag.UserSparePieces = getUserPieces((int)id);
-
-            User userToReturn = _context.Users.Find(id);
-            return View(userToReturn);
+            return RedirectToAction("UserSets");
         }
 
         public ActionResult AddAvatar()
@@ -148,7 +139,7 @@ namespace LegoCollectionManager.Controllers
                                       link = a.Url
                                   }).FirstOrDefault().link;
 
-            return RedirectToAction("Details", new { id = userToReturn });
+            return RedirectToAction("UserSets");
         }
 
 
@@ -214,6 +205,7 @@ namespace LegoCollectionManager.Controllers
                              select u).FirstOrDefault().UserId;
 
             HttpContext.Session.SetInt32(SessionUserId, userId);
+            HttpContext.Session.SetString("_IsActive", "Active");
 
             try
             {
@@ -334,7 +326,7 @@ namespace LegoCollectionManager.Controllers
 
         public ActionResult UserSets()
         {
-            int userId = (int)HttpContext.Session.GetInt32("_User");
+            int userId = (int)HttpContext.Session.GetInt32("_UserId");
             List<Set> sets = (from us in _context.UserSets
                               join s in _context.Sets on us.Set equals s.SetId
                               where us.User == userId
@@ -345,14 +337,14 @@ namespace LegoCollectionManager.Controllers
 
         public ActionResult AddUserSet()
         {
-            return View(_context.Sets.ToList());
+            return View(_context.Sets.ToList().GetRange(0, 50));
         }
 
         [HttpPost]
-        public ActionResult AddUserSet(Set setToAdd)
+        public ActionResult AddUserSet(IFormCollection form)
         {
-            int userId = (int)HttpContext.Session.GetInt32("_User");
-            int setId = setToAdd.SetId;
+            int userId = (int)HttpContext.Session.GetInt32("_UserId");
+            int setId = Int32.Parse(form["Set"].ToString());
 
             UserSet userSet = new UserSet();
             userSet.User = userId;
@@ -363,5 +355,34 @@ namespace LegoCollectionManager.Controllers
 
             return RedirectToAction("UserSets");
         }
+
+        public ActionResult DeleteUserSet(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            int userId = (int)HttpContext.Session.GetInt32("_UserId");
+
+            int userSetToDelete = (from us in _context.UserSets
+                                       join s in _context.Sets on us.Set equals s.SetId
+                                       where us.Set == id && us.User == userId
+                                       select new
+                                       {
+                                           usSetId = us.UseSetId
+                                       }).FirstOrDefault().usSetId;
+
+            UserSet toDelete = _context.UserSets.Find(userSetToDelete);
+            return View(toDelete);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteUserSet(UserSet toDelete)
+        {
+            _context.UserSets.Remove(toDelete);
+            _context.SaveChanges();
+            return RedirectToAction("UserSets");
+        }
     }
 }
+
+

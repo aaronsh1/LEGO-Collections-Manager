@@ -12,6 +12,24 @@ namespace LegoCollectionManager.Controllers
     {
         LegoCollectionDBContext _context = new LegoCollectionDBContext();
 
+        public IEnumerable<Set> getUserSets(int id)
+        {
+            List<Set> userSets = (from s in _context.Sets
+                                  join us in _context.UserSets on s.SetId equals us.UseSetId
+                                  where us.User == id
+                                  select s).ToList();
+            return userSets;
+        }
+
+        public IEnumerable<Piece> getUserPieces(int id)
+        {
+            List<Piece> userPieces = (from p in _context.Pieces
+                                      join up in _context.UserSparePieces on p.PieceId equals up.Piece
+                                      where up.User == id
+                                      select p).ToList();
+            return userPieces;
+        }
+
         // GET: UserController
         public ActionResult Index()
         {
@@ -60,8 +78,10 @@ namespace LegoCollectionManager.Controllers
             if (id == null)
                 return NotFound();
 
-            User userToReturn = new User();
-            userToReturn = _context.Users.Find(id);
+            ViewBag["UserSets"] = getUserSets((int) id);
+            ViewBag["UserSparePieces"] = getUserPieces((int)id);
+
+            User userToReturn = _context.Users.Find(id);
             return View(userToReturn);
         }
 

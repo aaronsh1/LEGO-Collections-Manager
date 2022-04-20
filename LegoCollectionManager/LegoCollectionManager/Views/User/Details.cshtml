@@ -19,7 +19,7 @@
                         @Html.DisplayNameFor(model => SetHeaderItem.PiecesAmount)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => SetHeaderItem.SetCategoryNavigation)
+                        @Html.DisplayNameFor(model => SetHeaderItem.SetCategory)
                     </th>
                     <th></th>
                 </tr>
@@ -45,6 +45,7 @@
             }
             </tbody>
         </table>
+        <a asp-controller="UserSet" asp-action="Create" asp-route-id="@Model.UserId">Add</a>
     <hr />
     <h4>Pieces</h4>
         <table class="table">
@@ -77,6 +78,7 @@
             }
             </tbody>
         </table>
+         <a asp-controller="UserSparePiece" asp-action="Create">Add</a>
     <hr />
 </div>
 <div>

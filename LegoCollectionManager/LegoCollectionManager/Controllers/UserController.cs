@@ -49,8 +49,8 @@ namespace LegoCollectionManager.Controllers
             if (id == null)
                 return NotFound();
 
-            ViewBag["UserSets"] = getUserSets((int) id);
-            ViewBag["UserSparePieces"] = getUserPieces((int)id);
+            ViewBag.UserSets = getUserSets((int) id);
+            ViewBag.UserSparePieces = getUserPieces((int)id);
 
             User userToReturn = _context.Users.Find(id);
             return View(userToReturn);

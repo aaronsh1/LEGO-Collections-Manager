@@ -4,27 +4,33 @@
   ViewData["Title"] = "Index";
   var dictionary = this.ViewBag.dictionary as List<Piece>;
   var category = this.ViewBag.displayData as List<string>;
+  var name = this.ViewBag.category as string;
 }
 
-<form action="/PieceCategory/Search" method="get">
+<br />
+<h1>Filter by Category</h1>
+<br />
+<form action="/PieceCategory/Search" method="get" class="d-flex">
   <select name="value">
     @foreach (var diction in category)
     {
       <option value="@diction">@diction</option>
     }
   </select>
-  <p><input type="submit" value="Submit" /> </p>
+  <input type="submit" value="Submit" />
 </form>
 
-
+<br />
+<h1> @name </h1>
 <table class="table">
+
   <thead>
     <tr>
       <th>
-        @Html.DisplayNameFor(model => model.PieceName)
+        @Html.DisplayNameFor(model => model.PieceId)
       </th>
       <th>
-        @Html.DisplayNameFor(model => model.PieceCategory)
+        @Html.DisplayNameFor(model => model.PieceName)
       </th>
     </tr>
   </thead>
@@ -33,10 +39,10 @@
     {
       <tr>
         <td>
-          @Html.DisplayFor(modelItem => item.PieceName)
+          @Html.DisplayFor(modelItem => item.PieceId)
         </td>
         <td>
-          @Html.DisplayFor(modelItem => item.PieceCategory)
+          @Html.DisplayFor(modelItem => item.PieceName)
         </td>
       </tr>
     }

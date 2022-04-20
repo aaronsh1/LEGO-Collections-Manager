@@ -296,5 +296,24 @@ namespace LegoCollectionManager.Controllers
                 return View();
             }
         }
+
+        public ActionResult SetRecommendations()
+        {
+            int? userId = HttpContext.Session.GetInt32("_UserId");
+
+            if (userId == null)
+                return NotFound();
+
+            List<int?> categories = (from s in _context.Sets
+                                     join sc in _context.UserSets on s.SetId equals sc.UseSetId
+                                     where sc.User == userId
+                                     select s.SetCategory).ToList();
+
+            List<Set> recomSets = (from s in _context.Sets
+                                   where categories.Contains(s.SetCategory)
+                                   select s).ToList();
+
+            return View(recomSets);
+        }
     }
 }

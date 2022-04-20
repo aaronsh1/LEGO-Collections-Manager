@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Configuration;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,6 @@ namespace LegoCollectionManager.Models
 {
     public partial class LegoCollectionDBContext : DbContext
     {
-
         public LegoCollectionDBContext()
         {
         }
@@ -29,12 +29,9 @@ namespace LegoCollectionManager.Models
         public virtual DbSet<SetCategory> SetCategories { get; set; }
         public virtual DbSet<SetPiece> SetPieces { get; set; }
         public virtual DbSet<SetPieceCategory> SetPieceCategories { get; set; }
-        public virtual DbSet<SubstitutePool> SubstitutePools { get; set; }
-        public virtual DbSet<SubstitutePoolItem> SubstitutePoolItems { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserSet> UserSets { get; set; }
         public virtual DbSet<UserSparePiece> UserSparePieces { get; set; }
-        public virtual DbSet<UserSubsititutePool> UserSubsititutePools { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -57,8 +54,10 @@ namespace LegoCollectionManager.Models
             {
                 entity.ToTable("Colour");
 
+                entity.Property(e => e.ColourId).ValueGeneratedNever();
+
                 entity.Property(e => e.ColourName)
-                    .HasMaxLength(1)
+                    .HasMaxLength(255)
                     .IsUnicode(false);
             });
 
@@ -66,46 +65,55 @@ namespace LegoCollectionManager.Models
             {
                 entity.ToTable("MissingPiece");
 
+                entity.Property(e => e.Piece)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.ColourNavigation)
                     .WithMany(p => p.MissingPieces)
                     .HasForeignKey(d => d.Colour)
-                    .HasConstraintName("FK__MissingPi__Colou__5AEE82B9");
+                    .HasConstraintName("FK__MissingPi__Colou__403A8C7D");
 
                 entity.HasOne(d => d.PieceNavigation)
                     .WithMany(p => p.MissingPieces)
                     .HasForeignKey(d => d.Piece)
-                    .HasConstraintName("FK__MissingPi__Piece__5812160E");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__MissingPi__Piece__3F466844");
 
                 entity.HasOne(d => d.UserSetNavigation)
                     .WithMany(p => p.MissingPieces)
                     .HasForeignKey(d => d.UserSet)
-                    .HasConstraintName("FK__MissingPi__UserS__571DF1D5");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__MissingPi__UserS__3E52440B");
             });
 
             modelBuilder.Entity<Piece>(entity =>
             {
                 entity.ToTable("Piece");
 
-                entity.Property(e => e.PieceImage)
-                    .HasMaxLength(1)
+                entity.Property(e => e.PieceId)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.PieceName)
-                    .HasMaxLength(1)
+                    .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.PieceCategoryNavigation)
                     .WithMany(p => p.Pieces)
                     .HasForeignKey(d => d.PieceCategory)
-                    .HasConstraintName("FK__Piece__PieceCate__4E88ABD4");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__Piece__PieceCate__2A4B4B5E");
             });
 
             modelBuilder.Entity<PieceCategory>(entity =>
             {
                 entity.ToTable("PieceCategory");
 
+                entity.Property(e => e.PieceCategoryId).ValueGeneratedNever();
+
                 entity.Property(e => e.PieceCategoryName)
-                    .HasMaxLength(1)
+                    .HasMaxLength(255)
                     .IsUnicode(false);
             });
 
@@ -113,22 +121,27 @@ namespace LegoCollectionManager.Models
             {
                 entity.ToTable("Set");
 
+                entity.Property(e => e.SetId).ValueGeneratedNever();
+
                 entity.Property(e => e.SetName)
-                    .HasMaxLength(1)
+                    .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.SetCategoryNavigation)
                     .WithMany(p => p.Sets)
                     .HasForeignKey(d => d.SetCategory)
-                    .HasConstraintName("FK__Set__SetCategory__4D94879B");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__Set__SetCategory__2F10007B");
             });
 
             modelBuilder.Entity<SetCategory>(entity =>
             {
                 entity.ToTable("SetCategory");
 
+                entity.Property(e => e.SetCategoryId).ValueGeneratedNever();
+
                 entity.Property(e => e.SetCategoryName)
-                    .HasMaxLength(1)
+                    .HasMaxLength(255)
                     .IsUnicode(false);
             });
 
@@ -136,23 +149,26 @@ namespace LegoCollectionManager.Models
             {
                 entity.ToTable("SetPiece");
 
-                entity.Property(e => e.SetPieceId).ValueGeneratedOnAdd();
+                entity.Property(e => e.Piece)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.ColourNavigation)
                     .WithMany(p => p.SetPieces)
                     .HasForeignKey(d => d.Colour)
-                    .HasConstraintName("FK__SetPiece__Colour__59063A47");
+                    .HasConstraintName("FK__SetPiece__Colour__33D4B598");
+
+                entity.HasOne(d => d.PieceNavigation)
+                    .WithMany(p => p.SetPieces)
+                    .HasForeignKey(d => d.Piece)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__SetPiece__Piece__31EC6D26");
 
                 entity.HasOne(d => d.Set)
                     .WithMany(p => p.SetPieces)
                     .HasForeignKey(d => d.SetId)
-                    .HasConstraintName("FK__SetPiece__SetId__5070F446");
-
-                entity.HasOne(d => d.SetPieceNavigation)
-                    .WithOne(p => p.SetPiece)
-                    .HasForeignKey<SetPiece>(d => d.SetPieceId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__SetPiece__SetPie__4F7CD00D");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__SetPiece__SetId__32E0915F");
             });
 
             modelBuilder.Entity<SetPieceCategory>(entity =>
@@ -162,41 +178,14 @@ namespace LegoCollectionManager.Models
                 entity.HasOne(d => d.PieceCategoryNavigation)
                     .WithMany(p => p.SetPieceCategories)
                     .HasForeignKey(d => d.PieceCategory)
-                    .HasConstraintName("FK__SetPieceC__Piece__5535A963");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__SetPieceC__Piece__4316F928");
 
                 entity.HasOne(d => d.SetNavigation)
                     .WithMany(p => p.SetPieceCategories)
                     .HasForeignKey(d => d.Set)
-                    .HasConstraintName("FK__SetPieceCat__Set__5629CD9C");
-            });
-
-            modelBuilder.Entity<SubstitutePool>(entity =>
-            {
-                entity.HasKey(e => e.SubstitutePool1)
-                    .HasName("PK__Substitu__77049D978B644CD4");
-
-                entity.ToTable("SubstitutePool");
-
-                entity.Property(e => e.SubstitutePool1).HasColumnName("SubstitutePool");
-
-                entity.Property(e => e.Name)
-                    .HasMaxLength(1)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<SubstitutePoolItem>(entity =>
-            {
-                entity.ToTable("SubstitutePoolItem");
-
-                entity.HasOne(d => d.PieceNavigation)
-                    .WithMany(p => p.SubstitutePoolItems)
-                    .HasForeignKey(d => d.Piece)
-                    .HasConstraintName("FK__Substitut__Piece__5CD6CB2B");
-
-                entity.HasOne(d => d.SubstitutePoolNavigation)
-                    .WithMany(p => p.SubstitutePoolItems)
-                    .HasForeignKey(d => d.SubstitutePool)
-                    .HasConstraintName("FK__Substitut__Subst__5BE2A6F2");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__SetPieceCat__Set__440B1D61");
             });
 
             modelBuilder.Entity<User>(entity =>
@@ -204,63 +193,54 @@ namespace LegoCollectionManager.Models
                 entity.ToTable("User");
 
                 entity.Property(e => e.Username)
-                    .HasMaxLength(1)
+                    .HasMaxLength(255)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<UserSet>(entity =>
             {
                 entity.HasKey(e => e.UseSetId)
-                    .HasName("PK__UserSet__85C9DDD6E01DB285");
+                    .HasName("PK__UserSet__85C9DDD6667A25D3");
 
                 entity.ToTable("UserSet");
 
                 entity.HasOne(d => d.SetNavigation)
                     .WithMany(p => p.UserSets)
                     .HasForeignKey(d => d.Set)
-                    .HasConstraintName("FK__UserSet__Set__5441852A");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__UserSet__Set__3B75D760");
 
                 entity.HasOne(d => d.UserNavigation)
                     .WithMany(p => p.UserSets)
                     .HasForeignKey(d => d.User)
-                    .HasConstraintName("FK__UserSet__User__534D60F1");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__UserSet__User__3A81B327");
             });
 
             modelBuilder.Entity<UserSparePiece>(entity =>
             {
                 entity.HasNoKey();
 
+                entity.Property(e => e.Piece)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.ColourNavigation)
                     .WithMany()
                     .HasForeignKey(d => d.Colour)
-                    .HasConstraintName("FK__UserSpare__Colou__59FA5E80");
+                    .HasConstraintName("FK__UserSpare__Colou__37A5467C");
 
                 entity.HasOne(d => d.PieceNavigation)
                     .WithMany()
                     .HasForeignKey(d => d.Piece)
-                    .HasConstraintName("FK__UserSpare__Piece__52593CB8");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__UserSpare__Piece__36B12243");
 
                 entity.HasOne(d => d.UserNavigation)
                     .WithMany()
                     .HasForeignKey(d => d.User)
-                    .HasConstraintName("FK__UserSpareP__User__5165187F");
-            });
-
-            modelBuilder.Entity<UserSubsititutePool>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("UserSubsititutePool");
-
-                entity.HasOne(d => d.SubstitutePoolNavigation)
-                    .WithMany()
-                    .HasForeignKey(d => d.SubstitutePool)
-                    .HasConstraintName("FK__UserSubsi__Subst__5DCAEF64");
-
-                entity.HasOne(d => d.UserNavigation)
-                    .WithMany()
-                    .HasForeignKey(d => d.User)
-                    .HasConstraintName("FK__UserSubsit__User__5EBF139D");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__UserSpareP__User__35BCFE0A");
             });
 
             OnModelCreatingPartial(modelBuilder);

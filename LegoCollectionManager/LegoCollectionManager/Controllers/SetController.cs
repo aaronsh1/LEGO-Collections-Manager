@@ -145,7 +145,7 @@ namespace LegoCollectionManager.Controllers
         public ActionResult AddPiece(int setId, FormCollection form)
         {
             SetPiece SetPieceToAdd = new SetPiece();
-            SetPieceToAdd.Piece = Int32.Parse(form["Piece"]);
+            SetPieceToAdd.Piece = (form["Piece"]);
             SetPieceToAdd.SetId = setId;
             SetPieceToAdd.Amount = Int32.Parse(form["Amount"]);
             SetPieceToAdd.Colour = Int32.Parse(form["Colour"]);

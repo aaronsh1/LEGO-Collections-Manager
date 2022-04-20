@@ -8,7 +8,7 @@ namespace LegoCollectionManager.Models
     public partial class UserSparePiece
     {
         public int? User { get; set; }
-        public int? Piece { get; set; }
+        public string Piece { get; set; }
         public int? Amount { get; set; }
         public int? Colour { get; set; }
 

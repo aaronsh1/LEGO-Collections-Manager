@@ -48,18 +48,19 @@ namespace LegoCollectionManager.Controllers
                 return NotFound();
 
             ViewBag.SetNumbers = getSetNumbers();
+            ViewBag.UserId = id;
 
-            User userToReturn = _context.Users.Find(id);
-            return View(userToReturn);
+            UserSet userSetToReturn = new UserSet();
+            return View(userSetToReturn);
         }
 
         // POST: UserSet/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(User user, IFormCollection form)
+        public ActionResult Create(IFormCollection form)
         {
             UserSet userSetToAdd = new UserSet();
-            userSetToAdd.User = user.UserId;
+            userSetToAdd.User = ViewBag.UserId;
             userSetToAdd.Set = Int32.Parse(form["Set"]);
             _context.UserSets.Add(userSetToAdd);
             _context.SaveChanges();

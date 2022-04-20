@@ -1,4 +1,4 @@
-﻿@model LegoCollectionManager.Models.User
+﻿@model LegoCollectionManager.Models.UserSet
 
 @{
     ViewData["Title"] = "Add Set";
@@ -12,7 +12,7 @@
         <form asp-action="Create">
             <div class="form-group">
                 <label asp-for="Set" class="control-label">Set number</label>
-                <select asp-for="Set" class ="form-control" asp-items="ViewBag.SetNumbers"></select>
+                <select asp-for="Set" class="form-control" asp-items="ViewBag.SetNumbers"></select>
                 <span asp-validation-for="Set" class="text-danger"></span>
             </div>
             <div class="form-group">

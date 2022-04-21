@@ -48,9 +48,12 @@ namespace LegoCollectionManager.Controllers
             _context.CustomSets.Add(customSetToAdd);
             _context.SaveChanges();
 
+            int setId = customSetToAdd.CustomSetId;
+
+
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("AddPieces", new {id = setId });
             }
             catch
             {

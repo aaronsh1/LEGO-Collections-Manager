@@ -17,12 +17,6 @@ namespace LegoCollectionManager.Controllers
 
         QueryObjectUtil _queryObjectUtil = new QueryObjectUtil();
 
-        public IEnumerable<int> tester()
-        {
-            List<int> tests = new List<int> { 1, 2, 3 };
-            return tests;
-        }
-
         // GET: SetController
         public ActionResult Index()
         {

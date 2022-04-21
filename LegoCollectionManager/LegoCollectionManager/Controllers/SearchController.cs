@@ -8,6 +8,8 @@ using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
 using LegoCollectionManager.DTO;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
 
 namespace LegoCollectionManager.Controllers
 {
@@ -15,12 +17,27 @@ namespace LegoCollectionManager.Controllers
     {
         LegoCollectionDBContext _context = new LegoCollectionDBContext();
 
-        public ActionResult Search()
+        public ActionResult Search(IFormCollection collection)
         {
             Console.WriteLine("Hello world from Search");
 
-            //60321, 6032, 75157
-            var setIds = new int[]{ 75159 };
+            List<int> setIds = new List<int>();
+
+            for (int i = 0; i < 1000; i++)
+            {
+                StringValues x = "";
+                collection.TryGetValue($"{i}", out x);
+
+                string x2 = x.ToString().Trim();
+
+                if (x2 == "")
+                {
+                    continue;
+                }
+
+                setIds.Add(Int32.Parse(x2));
+                Console.WriteLine($"Value: '{x2}'");
+            }
 
             SetInformationUtil util = new SetInformationUtil();
             Dictionary<string, int> searchPieces = new Dictionary<string, int>();

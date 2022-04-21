@@ -76,26 +76,41 @@ namespace LegoCollectionManager.SetInformation
             LegoSetImage[] additionalImages = new LegoSetImage[additionalData?.additional_images?.Count ?? 0];
 
             for (int i = 0; i < additionalImages.Length; i++) {
-                dynamic img = additionalData.additional_images[i];
-                img = img?.grown_up_image ?? img?.kid_image;
-                img = img?.image;
+                try
+                {
+                    dynamic img = additionalData.additional_images[i];
+                    img = img?.grown_up_image ?? img?.kid_image;
+                    img = img?.image;
+
+                    additionalImages[i] = new LegoSetImage()
+                    {
+                        FileName = img?.filename,
+                        Uid = img?.uid,
+                        Url = img?.url,
+                    };
+
+                } catch
+                {
+                    additionalImages[i] = new LegoSetImage()
+                    {
+                        FileName = "",
+                        Uid = "",
+                        Url = "",
+                    };
+                }
+
                 
-                additionalImages[i] = new LegoSetImage() {
-                    FileName = img?.filename,
-                    Uid = img?.uid,
-                    Url = img?.url,
-                };
             }
 
             var setInfo = new SetInformation()
             {
-                Id = info._id,
+                Id = info._id ?? 0,
                 Name = locale?.display_title,
                 Description = locale?.description,
                 BulletPoints = ((string)locale?.bullet_points)?.Split("\r\n"),
                 Headline = locale?.headline,
                 OneLiner = locale?.one_liner,                
-                PieceCount = versionedInfo?.piece_count,
+                PieceCount = versionedInfo?.piece_count?? 0,
                 Instructions = instructions,
                 PrimaryImage = primaryImage,
                 BoxImage = boxImage,                

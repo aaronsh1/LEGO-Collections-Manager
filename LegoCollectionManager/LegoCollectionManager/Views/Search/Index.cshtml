@@ -2,36 +2,44 @@
 
 @{
     ViewData["Title"] = "Index";
+    LegoCollectionManager.SetInformation.SetInformationDTO item = null;
 }
 
 <h1>Choose Sets:</h1>
 
-<div class="container mt-3 d-flex flex-row">
+@using (Html.BeginForm("Search", "Search"))
+{
 
-    @foreach (var item in Model)
-    {
-        <div class="card" style="width:400px; margin:5px;">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <span style="margin-right:20px">@item.Name</span>
-                <input id="checkbox2" style="min-width: 30px; min-height: 30px" type="checkbox" checked>
-            </div>
+    <div style="display:flex; justify-content:flex-end; width:100%">
+        <input type="submit" value="Search" />
+    </div>
 
-            <div class="card-body d-flex flex-column">
+    <div class="container mt-3 d-flex flex-row">
 
-                <div style="width:auto; margin:30px; margin-top: 5px;">
-                    <img width="100%" src="@(item.BoxImage?.Url?? item.Images[0].Url)" />
+
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            {item = Model.ElementAt(i);}
+
+            <div class="card" style="width:400px; margin:5px;">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span style="margin-right:20px">@item.Name</span>
+                    <input id="@i" name="@i" style="min-width: 30px; min-height: 30px" type="checkbox" value="@item.Id">
                 </div>
 
-                <span>Theme: @item.SetCategoryNavigation.SetCategoryName</span>
-                <span>Set Id: @item.Id</span>
-                <span>Piece Count: @item.PieceCount</span>
+                <div class="card-body d-flex flex-column">
+
+                    <div style="width:auto; margin:30px; margin-top: 5px;">
+                        <img width="100%" src="@(item.BoxImage?.Url?? item.Images[0].Url)" />
+                    </div>
+
+                    <span>Theme: @item.SetCategoryNavigation.SetCategoryName</span>
+                    <span>Set Id: @item.Id</span>
+                    <span>Piece Count: @item.PieceCount</span>
+                </div>
+
             </div>
 
-        </div>
-
-    }
-</div>
-
-<p>
-    <a asp-action="Search">Search</a>
-</p>
+        }
+    </div>
+}

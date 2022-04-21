@@ -13,4 +13,11 @@ namespace LegoCollectionManager.DTO
         public double matchPercentage;
         public IEnumerable<SetPiece> missingPieces;
     }
+
+    public class SearchRequestDTO
+    {
+        public string Item1;
+        public string Item2;
+        public string Item3;
+    }
 }

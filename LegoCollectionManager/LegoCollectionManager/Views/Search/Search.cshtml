@@ -10,7 +10,7 @@
 
     @foreach (var item in Model)
     {
-        <div class="card" style="width:400px; margin:5px;">
+        <div class="card" style="width:350px; margin:5px;">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <a href="/Set/Details/@item.setId"><span style="margin-right:20px">@item.setDTO.Name</span></a>
                 <span>@Math.Round(item.matchPercentage, 2) %</span>

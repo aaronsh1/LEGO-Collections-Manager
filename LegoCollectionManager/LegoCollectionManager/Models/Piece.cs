@@ -9,6 +9,7 @@ namespace LegoCollectionManager.Models
     {
         public Piece()
         {
+            CustomSetPieces = new HashSet<CustomSetPiece>();
             MissingPieces = new HashSet<MissingPiece>();
             SetPieces = new HashSet<SetPiece>();
         }
@@ -18,6 +19,7 @@ namespace LegoCollectionManager.Models
         public int? PieceCategory { get; set; }
 
         public virtual PieceCategory PieceCategoryNavigation { get; set; }
+        public virtual ICollection<CustomSetPiece> CustomSetPieces { get; set; }
         public virtual ICollection<MissingPiece> MissingPieces { get; set; }
         public virtual ICollection<SetPiece> SetPieces { get; set; }
     }

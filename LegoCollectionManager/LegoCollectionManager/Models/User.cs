@@ -9,6 +9,7 @@ namespace LegoCollectionManager.Models
     {
         public User()
         {
+            CustomSets = new HashSet<CustomSet>();
             UserAvatars = new HashSet<UserAvatar>();
             UserSets = new HashSet<UserSet>();
         }
@@ -18,6 +19,7 @@ namespace LegoCollectionManager.Models
         public string Salt { get; set; }
         public string Password { get; set; }
 
+        public virtual ICollection<CustomSet> CustomSets { get; set; }
         public virtual ICollection<UserAvatar> UserAvatars { get; set; }
         public virtual ICollection<UserSet> UserSets { get; set; }
     }

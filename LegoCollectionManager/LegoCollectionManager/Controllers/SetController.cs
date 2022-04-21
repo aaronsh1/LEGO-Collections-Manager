@@ -7,6 +7,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using LegoCollectionManager.Utils;
 
 namespace LegoCollectionManager.Controllers
 {
@@ -14,47 +15,12 @@ namespace LegoCollectionManager.Controllers
     {
         LegoCollectionDBContext _context = new LegoCollectionDBContext();
 
-        public IEnumerable<SelectListItem> getSetCategories()
+        QueryObjectUtil _queryObjectUtil = new QueryObjectUtil();
+
+        public IEnumerable<int> tester()
         {
-            IEnumerable<SelectListItem> setCategories = from sc in _context.SetCategories
-                                                        select new SelectListItem
-                                                        {
-                                                            Text = sc.SetCategoryName,
-                                                            Value = sc.SetCategoryId.ToString()
-                                                        };
-            return setCategories;
-        }
-
-        public IEnumerable<SetPiece> getSetPieces(int id)
-        {
-            IEnumerable<SetPiece> setPieces = from sc in _context.SetPieces
-                                              where sc.SetId == id
-                                              select sc;
-
-            return setPieces;
-        }
-
-        public IEnumerable<SelectListItem> getAllPieces()
-        {
-            IEnumerable<SelectListItem> allPieces = from p in _context.Pieces
-                                                    select new SelectListItem
-                                                    {
-                                                        Text = p.PieceName,
-                                                        Value = p.PieceId.ToString()
-                                                    };
-
-            return allPieces;
-        }
-
-        public IEnumerable<SelectListItem> getColours()
-        {
-            IEnumerable<SelectListItem> colours = from c in _context.Colours
-                                                  select new SelectListItem
-                                                  {
-                                                      Text = c.ColourName,
-                                                      Value = c.ColourId.ToString()
-                                                  };
-            return colours;
+            List<int> tests = new List<int> { 1, 2, 3 };
+            return tests;
         }
 
         // GET: SetController
@@ -95,68 +61,6 @@ namespace LegoCollectionManager.Controllers
             Set setModel = _context.Sets.Find(id);
 
             return View(SetInformationDTO.GetDTO(setModel, setInfo));
-        }
-
-        // GET: SetController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: SetController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Set setToAdd)
-        {
-            ViewBag["SetCategory"] = getSetCategories();
-
-            _context.Sets.Add(setToAdd);
-            _context.SaveChanges();
-
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        public ActionResult AddPieces(int? id)
-        {
-            if (id == null)
-                return NotFound();
-
-            ViewBag.SetId = id;
-            IEnumerable<SetPiece> pieces = (from sp in _context.SetPieces
-                                            where sp.SetId == id
-                                            select sp);
-
-
-            return View(pieces);
-        }
-
-        public ActionResult AddPiece()
-        {
-            ViewBag.Pieces = getAllPieces();
-            ViewBag.Colours = getColours();
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddPiece(int setId, FormCollection form)
-        {
-            SetPiece SetPieceToAdd = new SetPiece();
-            SetPieceToAdd.Piece = (form["Piece"]);
-            SetPieceToAdd.SetId = setId;
-            SetPieceToAdd.Amount = Int32.Parse(form["Amount"]);
-            SetPieceToAdd.Colour = Int32.Parse(form["Colour"]);
-
-            _context.SetPieces.Add(SetPieceToAdd);
-            _context.SaveChanges();
-
-            return View(setId);
         }
 
         // GET: SetController/Edit/5
@@ -211,8 +115,8 @@ namespace LegoCollectionManager.Controllers
 
         public ActionResult EditPiece(int? setPieceId)
         {
-            ViewBag.Pieces = getAllPieces();
-            ViewBag.Colours = getColours();
+            ViewBag.Pieces = _queryObjectUtil.getAllPieces();
+            ViewBag.Colours = _queryObjectUtil.getColours();
             SetPiece setPieceToEdit = _context.SetPieces.Find(setPieceId);
             return View(setPieceToEdit);
         }

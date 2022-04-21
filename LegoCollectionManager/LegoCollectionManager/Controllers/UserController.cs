@@ -7,44 +7,18 @@ using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using LegoCollectionManager.Utils;
 
 namespace LegoCollectionManager.Controllers
 {
     public class UserController : Controller
     {
         LegoCollectionDBContext _context = new LegoCollectionDBContext();
+        QueryObjectUtil _queryObjectUtil = new QueryObjectUtil();
+        LoginUtil _loginUtil = new LoginUtil(); 
+
         bool validUser = true;
         bool validPassword = true;
-
-        public IEnumerable<Set> getUserSets(int id)
-        {
-            List<Set> userSets = (from s in _context.Sets
-                                  join us in _context.UserSets on s.SetId equals us.UseSetId
-                                  where us.User == id
-                                  select s).ToList();
-            return userSets;
-        }
-
-        public IEnumerable<Piece> getUserPieces(int id)
-        {
-            List<Piece> userPieces = (from p in _context.Pieces
-                                      join up in _context.UserSparePieces on p.PieceId equals up.Piece
-                                      where up.User == id
-                                      select p).ToList();
-            return userPieces;
-        }
-
-        public IEnumerable<SelectListItem> getAvatarList()
-        {
-            IEnumerable<SelectListItem> avatarList = (from a in _context.Avatars
-                                                      select new SelectListItem
-                                                      {
-                                                          Text = a.Url,
-                                                          Value = a.AvatarId.ToString()
-                                                      });
-
-            return avatarList;
-        }
 
         // GET: UserController
         public ActionResult Index()
@@ -65,27 +39,10 @@ namespace LegoCollectionManager.Controllers
                                  where u.Username == Username
                                  select u).FirstOrDefault();
 
-            if (userToReturn == null)
-            {
-                ViewData["IncorrectPassword"] = "Incorrect Username or Password. Please Try Again.";
-                return View("Index");
-            }
-
-            string saltFromDb = userToReturn.Salt;
-            byte[] salt = Convert.FromBase64String(saltFromDb);
-            string passwordFromDb = userToReturn.Password;
+            bool loggedIn = _loginUtil.login(Username, Password);
 
 
-
-            string hashedPassword = System.Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                password: Password,
-                salt: salt,
-                prf: KeyDerivationPrf.HMACSHA256,
-                iterationCount: 100000,
-                numBytesRequested: 256 / 8));
-
-
-            if (passwordFromDb != hashedPassword)
+            if (!loggedIn)
             {
                 validPassword = false;
                 ViewData["IncorrectPassword"] = "Incorrect Username or Password. Please Try Again.";
@@ -93,25 +50,15 @@ namespace LegoCollectionManager.Controllers
             }
             validPassword = true;
 
-            string SessionUserId = "_UserId";
-
-            HttpContext.Session.SetInt32(SessionUserId, userToReturn.UserId);
+            HttpContext.Session.SetInt32("_UserId", userToReturn.UserId);
             HttpContext.Session.SetString("_IsActive", "Active");
-
-            ViewBag.UserAvatar = (from ua in _context.UserAvatars
-                                  join a in _context.Avatars on ua.Avatar equals a.AvatarId
-                                  where ua.User == userToReturn.UserId
-                                  select new
-                                  {
-                                      link = a.Url
-                                  }).FirstOrDefault().link;
 
             return RedirectToAction("UserSets");
         }
 
         public ActionResult AddAvatar()
         {
-            ViewBag.Avatars = getAvatarList();
+            ViewBag.Avatars = _queryObjectUtil.getAvatarList();
             return View();
         }
 
@@ -146,6 +93,7 @@ namespace LegoCollectionManager.Controllers
         // GET: UserController/Create
         public ActionResult Create()
         {
+            ViewBag.InvalidUser = "";
             return View();
         }
 
@@ -156,55 +104,26 @@ namespace LegoCollectionManager.Controllers
         public ActionResult Create(IFormCollection form)
         {
             ViewBag.InvalidUser = "";
-            if (!validUser)
-            {
-                ViewBag.InvalidUser = "Username is taken. Please choose an alternative.";
-            }
 
 
             string username = form["username"];
             string password = form["password"];
 
-            User ifExists = (from u in _context.Users
-                             where u.Username == username
-                             select u).FirstOrDefault();
+            bool isCreated = _loginUtil.register(username, password);
 
-            if(ifExists != null)
+            if(!isCreated)
             {
                 validUser = false;
+                ViewBag.InvalidUser = "Username is taken. Please choose an alternative.";
                 return View();
             }
             validUser = true;
-
-            byte[] salt = new byte[128 / 8];
-
-            using (var rngCsp = new RNGCryptoServiceProvider())
-            {
-                rngCsp.GetNonZeroBytes(salt);
-            }
-
-            string hashedPassword = System.Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                password: password,
-                salt: salt,
-                prf: KeyDerivationPrf.HMACSHA256,
-                iterationCount: 100000,
-                numBytesRequested: 256 / 8));
-
-            User userToAdd = new User();
-            userToAdd.Username = username;
-            userToAdd.Salt = System.Convert.ToBase64String(salt);
-            userToAdd.Password = hashedPassword;
-
-            _context.Users.Add(userToAdd);
-            _context.SaveChanges();
-
-            string SessionUserId = "_UserId";
 
             int userId = (from u in _context.Users
                              where u.Username == username
                              select u).FirstOrDefault().UserId;
 
-            HttpContext.Session.SetInt32(SessionUserId, userId);
+            HttpContext.Session.SetInt32("_UserId", userId);
             HttpContext.Session.SetString("_IsActive", "Active");
 
             try
@@ -313,7 +232,7 @@ namespace LegoCollectionManager.Controllers
                 return NotFound();
 
             List<int?> categories = (from s in _context.Sets
-                                     join sc in _context.UserSets on s.SetId equals sc.UseSetId
+                                     join sc in _context.UserSets on s.SetId equals sc.Set
                                      where sc.User == userId
                                      select s.SetCategory).ToList();
 
@@ -381,6 +300,15 @@ namespace LegoCollectionManager.Controllers
             _context.UserSets.Remove(toDelete);
             _context.SaveChanges();
             return RedirectToAction("UserSets");
+        }
+
+        public ActionResult UserCustomSets()
+        {
+            int userId = (int)HttpContext.Session.GetInt32("_UserId");
+            List<CustomSet> sets = (from cs in _context.CustomSets
+                                    where cs.User == userId
+                                    select cs).ToList();
+            return View(sets);
         }
     }
 }

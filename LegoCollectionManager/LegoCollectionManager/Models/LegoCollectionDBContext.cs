@@ -22,6 +22,8 @@ namespace LegoCollectionManager.Models
 
         public virtual DbSet<Avatar> Avatars { get; set; }
         public virtual DbSet<Colour> Colours { get; set; }
+        public virtual DbSet<CustomSet> CustomSets { get; set; }
+        public virtual DbSet<CustomSetPiece> CustomSetPieces { get; set; }
         public virtual DbSet<MissingPiece> MissingPieces { get; set; }
         public virtual DbSet<Piece> Pieces { get; set; }
         public virtual DbSet<PieceCategory> PieceCategories { get; set; }
@@ -71,6 +73,48 @@ namespace LegoCollectionManager.Models
                 entity.Property(e => e.ColourName)
                     .HasMaxLength(255)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<CustomSet>(entity =>
+            {
+                entity.ToTable("CustomSet");
+
+                entity.Property(e => e.CustomSetImage).HasMaxLength(255);
+
+                entity.Property(e => e.CustomSetName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.UserNavigation)
+                    .WithMany(p => p.CustomSets)
+                    .HasForeignKey(d => d.User)
+                    .HasConstraintName("FK__CustomSet__User__5070F446");
+            });
+
+            modelBuilder.Entity<CustomSetPiece>(entity =>
+            {
+                entity.ToTable("CustomSetPiece");
+
+                entity.Property(e => e.Piece)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.ColourNavigation)
+                    .WithMany(p => p.CustomSetPieces)
+                    .HasForeignKey(d => d.Colour)
+                    .HasConstraintName("FK__CustomSet__Colou__4F7CD00D");
+
+                entity.HasOne(d => d.CustomSetNavigation)
+                    .WithMany(p => p.CustomSetPieces)
+                    .HasForeignKey(d => d.CustomSet)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__CustomSet__Custo__4D94879B");
+
+                entity.HasOne(d => d.PieceNavigation)
+                    .WithMany(p => p.CustomSetPieces)
+                    .HasForeignKey(d => d.Piece)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__CustomSet__Piece__4E88ABD4");
             });
 
             modelBuilder.Entity<MissingPiece>(entity =>

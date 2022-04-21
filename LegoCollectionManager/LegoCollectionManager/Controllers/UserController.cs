@@ -200,8 +200,8 @@ namespace LegoCollectionManager.Controllers
 
             User userToDelete = (from u in _context.Users
                                  where u.UserId == id
-                                 select u).ToList().FirstOrDefault();
-            return View();
+                                 select u).FirstOrDefault();
+            return View(userToDelete);
         }
 
         // POST: UserController/Delete/5
@@ -214,6 +214,8 @@ namespace LegoCollectionManager.Controllers
 
             _context.Remove(userToDelete);
             _context.SaveChanges();
+
+            HttpContext.Session.Clear();
             try
             {
                 return RedirectToAction(nameof(Index));
@@ -246,6 +248,7 @@ namespace LegoCollectionManager.Controllers
         public ActionResult UserSets()
         {
             int userId = (int)HttpContext.Session.GetInt32("_UserId");
+            ViewBag.userId = userId;
             List<Set> sets = (from us in _context.UserSets
                               join s in _context.Sets on us.Set equals s.SetId
                               where us.User == userId

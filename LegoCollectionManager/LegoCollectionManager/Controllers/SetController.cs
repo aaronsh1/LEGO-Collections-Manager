@@ -17,6 +17,12 @@ namespace LegoCollectionManager.Controllers
 
         QueryObjectUtil _queryObjectUtil = new QueryObjectUtil();
 
+        public IEnumerable<int> tester()
+        {
+            List<int> tests = new List<int> { 1, 2, 3 };
+            return tests;
+        }
+
         // GET: SetController
         public ActionResult Index()
         {
@@ -55,68 +61,6 @@ namespace LegoCollectionManager.Controllers
             Set setModel = _context.Sets.Find(id);
 
             return View(SetInformationDTO.GetDTO(setModel, setInfo));
-        }
-
-        // GET: SetController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: SetController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Set setToAdd)
-        {
-            ViewBag["SetCategory"] = _queryObjectUtil.getSetCategories();
-
-            _context.Sets.Add(setToAdd);
-            _context.SaveChanges();
-
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        public ActionResult AddPieces(int? id)
-        {
-            if (id == null)
-                return NotFound();
-
-            ViewBag.SetId = id;
-            IEnumerable<SetPiece> pieces = (from sp in _context.SetPieces
-                                            where sp.SetId == id
-                                            select sp);
-
-
-            return View(pieces);
-        }
-
-        public ActionResult AddPiece()
-        {
-            ViewBag.Pieces = _queryObjectUtil.getAllPieces();
-            ViewBag.Colours = _queryObjectUtil.getColours();
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddPiece(int setId, FormCollection form)
-        {
-            SetPiece SetPieceToAdd = new SetPiece();
-            SetPieceToAdd.Piece = (form["Piece"]);
-            SetPieceToAdd.SetId = setId;
-            SetPieceToAdd.Amount = Int32.Parse(form["Amount"]);
-            SetPieceToAdd.Colour = Int32.Parse(form["Colour"]);
-
-            _context.SetPieces.Add(SetPieceToAdd);
-            _context.SaveChanges();
-
-            return View(setId);
         }
 
         // GET: SetController/Edit/5

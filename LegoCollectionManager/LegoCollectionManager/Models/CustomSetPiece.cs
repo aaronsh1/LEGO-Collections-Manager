@@ -11,6 +11,7 @@ namespace LegoCollectionManager.Models
         public string Piece { get; set; }
         public int? Colour { get; set; }
         public int? Amount { get; set; }
+        public int CustomSetPieceId { get; set; }
 
         public virtual Colour ColourNavigation { get; set; }
         public virtual CustomSet CustomSetNavigation { get; set; }

@@ -93,8 +93,6 @@ namespace LegoCollectionManager.Models
 
             modelBuilder.Entity<CustomSetPiece>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("CustomSetPiece");
 
                 entity.Property(e => e.Piece)
@@ -102,18 +100,18 @@ namespace LegoCollectionManager.Models
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.ColourNavigation)
-                    .WithMany()
+                    .WithMany(p => p.CustomSetPieces)
                     .HasForeignKey(d => d.Colour)
                     .HasConstraintName("FK__CustomSet__Colou__4F7CD00D");
 
                 entity.HasOne(d => d.CustomSetNavigation)
-                    .WithMany()
+                    .WithMany(p => p.CustomSetPieces)
                     .HasForeignKey(d => d.CustomSet)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK__CustomSet__Custo__4D94879B");
 
                 entity.HasOne(d => d.PieceNavigation)
-                    .WithMany()
+                    .WithMany(p => p.CustomSetPieces)
                     .HasForeignKey(d => d.Piece)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK__CustomSet__Piece__4E88ABD4");

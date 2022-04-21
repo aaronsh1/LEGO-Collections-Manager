@@ -7,12 +7,15 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using LegoCollectionManager.Utils;
 
 namespace LegoCollectionManager.Controllers
 {
     public class CustomSetController : Controller
     {
         LegoCollectionDBContext _context = new LegoCollectionDBContext();
+        QueryObjectUtil _queryObjectUtil = new QueryObjectUtil();
+
         // GET: CustomSetController
         public ActionResult Index()
         {
@@ -54,6 +57,47 @@ namespace LegoCollectionManager.Controllers
                 return View();
             }
         }
+
+        public ActionResult AddPieces(int? id)
+        {
+            if (id == null)
+                return NotFound();
+            ViewData["Pieces"] = _queryObjectUtil.getAllPieces();
+            ViewData["Colours"] = _queryObjectUtil.getColours();
+
+            ViewData["CustomSetId"]= id;
+            IEnumerable<CustomSetPiece> pieces = (from sp in _context.CustomSetPieces
+                                            where sp.CustomSet == id
+                                            select sp);
+
+
+            return View(pieces);
+        }
+
+        public ActionResult AddPiece()
+        {
+            ViewData["Pieces"] = _queryObjectUtil.getAllPieces();
+            ViewData["Colours"] = _queryObjectUtil.getColours();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddPiece(IFormCollection form)
+        {
+            CustomSetPiece SetPieceToAdd = new CustomSetPiece();
+            SetPieceToAdd.Piece = (form["Piece"]);
+            int setId = Int32.Parse(form["CustomSet"].ToString());
+            SetPieceToAdd.CustomSet = setId;
+            SetPieceToAdd.Amount = Int32.Parse(form["Amount"]);
+            SetPieceToAdd.Colour = Int32.Parse(form["Colour"]);
+
+            _context.CustomSetPieces.Add(SetPieceToAdd);
+            _context.SaveChanges();
+
+            return RedirectToAction("AddPieces", new { id = setId });
+        }
+
+
 
         // GET: CustomSetController/Edit/5
         public ActionResult Edit(int? id)

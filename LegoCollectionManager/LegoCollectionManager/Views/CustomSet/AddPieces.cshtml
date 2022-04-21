@@ -40,7 +40,7 @@
                 <p>@((from p in _context.Pieces where p.PieceId == item.Piece select p).FirstOrDefault().PieceName)</p>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Colour)
+                <p>@((from c in _context.Colours where c.ColourId == item.Colour select c).FirstOrDefault().ColourName)</p>
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CustomSetPieceId">Edit</a> |
